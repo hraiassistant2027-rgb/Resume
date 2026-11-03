@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Конструктор резюме — KAN Development</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+/* ============ ІНТЕРФЕЙС КОНСТРУКТОРА ============ */
+:root{
+  --kan:#0a3d8f; --kan2:#1e6fd9; --kan-d:#072c68; --kan-l:#eaf2fd;
+  --line:#d4e1f4; --ink:#14223b; --mut:#5d6c86; --bg:#f3f7fd; --white:#fff; --warn:#b4471b;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:'Open Sans',Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:15px}
+button,input,select,textarea{font:inherit;color:inherit}
+
+header.app{background:linear-gradient(120deg,var(--kan-d),var(--kan) 55%,var(--kan2));color:#fff}
+.app-in{max-width:1440px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo-box{height:46px;min-width:46px;padding:0 12px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;position:relative}
+.logo-box img{max-height:34px;max-width:170px;display:block}
+.logo-box .ph-logo{font-family:Montserrat,sans-serif;font-weight:800;color:var(--kan);font-size:13px;letter-spacing:.5px;white-space:nowrap}
+.brand-txt{font-family:Montserrat,sans-serif;font-weight:800;font-size:19px;letter-spacing:.3px;line-height:1.15}
+.brand-txt small{display:block;font-weight:500;font-size:12.5px;opacity:.85;letter-spacing:.4px}
+.app-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid transparent;border-radius:10px;padding:9px 16px;font-weight:600;cursor:pointer;transition:.15s;font-size:14px}
+.btn-ghost{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.35);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.22)}
+.btn-primary{background:var(--kan);color:#fff}
+.btn-primary:hover{background:var(--kan-d)}
+.btn-light{background:#fff;border-color:var(--line);color:var(--kan)}
+.btn-light:hover{border-color:var(--kan2)}
+.btn:disabled{opacity:.6;cursor:wait}
+
+.wrap{max-width:1440px;margin:0 auto;padding:22px 24px 60px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:24px;align-items:start}
+@media (max-width:1000px){.wrap{grid-template-columns:1fr;padding:16px 16px 50px}}
+
+.intro{grid-column:1/-1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;color:var(--mut);font-size:14px;display:flex;gap:12px;align-items:center}
+.intro b{color:var(--kan)}
+.intro .dot{width:10px;height:10px;border-radius:50%;background:var(--kan2);flex:none}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px}
+.card h2{margin:0 0 4px;font-family:Montserrat,sans-serif;font-size:16px;color:var(--kan);display:flex;align-items:center;gap:10px}
+.card h2 .num{width:26px;height:26px;border-radius:50%;background:var(--kan);color:#fff;font-size:13px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.card .hint{margin:0 0 14px 36px;color:var(--mut);font-size:13px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media (max-width:560px){.grid,.grid3{grid-template-columns:1fr}}
+.full{grid-column:1/-1}
+label.f{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:#33435f}
+input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:#fbfdff;font-weight:400;font-size:14px;outline:none;transition:.15s}
+input:focus,select:focus,textarea:focus{border-color:var(--kan2);box-shadow:0 0 0 3px rgba(30,111,217,.15);background:#fff}
+textarea{resize:vertical;min-height:70px}
+
+.photo-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.photo-prev{width:96px;height:96px;border-radius:50%;background:var(--kan-l) center/cover no-repeat;border:3px solid var(--kan);display:flex;align-items:center;justify-content:center;color:var(--kan);font-size:12px;font-weight:600;text-align:center}
+.file-btn{position:relative;overflow:hidden}
+.file-btn input{position:absolute;inset:0;opacity:0;cursor:pointer}
+
+.rep{border:1px dashed var(--line);border-radius:12px;padding:14px;margin-bottom:12px;background:#fafcff;position:relative}
+.rep .del{position:absolute;top:8px;right:8px;border:none;background:transparent;color:var(--mut);cursor:pointer;font-size:13px;padding:4px 8px;border-radius:6px}
+.rep .del:hover{background:#fdecec;color:#b42318}
+.rep .tag{font-size:12px;font-weight:700;color:var(--kan2);margin-bottom:10px;text-transform:uppercase;letter-spacing:.6px}
+.add{width:100%;border:1.5px dashed var(--kan2);background:var(--kan-l);color:var(--kan);border-radius:10px;padding:9px;font-weight:600;cursor:pointer}
+.add:hover{background:#dbe9fc}
+
+.preview{position:sticky;top:16px}
+@media (max-width:1000px){.preview{position:static}}
+.pv-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.pv-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.pv-head h2{margin:0;font-family:Montserrat,sans-serif;font-size:16px;color:var(--kan);margin-right:auto}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.thumb{border:2px solid var(--line);border-radius:10px;background:#fff;padding:6px;cursor:pointer;text-align:center;font-size:12.5px;font-weight:600;color:var(--mut)}
+.thumb.on{border-color:var(--kan);color:var(--kan);box-shadow:0 0 0 3px rgba(10,61,143,.12)}
+.thumb .tstage{width:100%;aspect-ratio:794/1122;overflow:hidden;position:relative;border-radius:4px;margin-bottom:5px;background:#eef2f8}
+.thumb .tstage .page{position:absolute;top:0;left:0;transform-origin:0 0;pointer-events:none}
+.stage{width:100%;position:relative;overflow:hidden;border-radius:6px;box-shadow:0 4px 24px rgba(10,61,143,.14);background:#fff}
+.stage .page{position:absolute;top:0;left:0;transform-origin:0 0}
+.warn{display:none;margin-top:12px;padding:10px 12px;border-radius:10px;background:#fff4ec;border:1px solid #f7c9a8;color:var(--warn);font-size:13px}
+.warn.show{display:block}
+.dl-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.dl-row .btn{flex:1 1 auto}
+.saved{font-size:12px;color:var(--mut)}
+
+/* ============ СТОРІНКА РЕЗЮМЕ (A4: 794×1122 px) ============ */
+.page{width:794px;height:1122px;background:#fff;overflow:hidden;display:flex;font-family:'Open Sans',Arial,sans-serif;font-size:12.5px;line-height:1.45;color:#2b3442;text-align:left}
+.page *{box-sizing:border-box}
+.page p{margin:0 0 6px}
+.page ul{margin:0;padding-left:16px}
+.page li{margin-bottom:3px}
+.page section{margin-bottom:20px}
+.page .fit{overflow:hidden;min-height:0}
+.page .ini{font-family:Montserrat,sans-serif;font-weight:800;opacity:.55}
+
+/* ---- Варіант 1 (синя шапка, світла бічна колонка) ---- */
+.t1{flex-direction:column}
+.t1 .top{display:flex;height:236px;flex:none}
+.t1 .ph{width:268px;height:236px;background:#dbe4f2 center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:56px;color:#2453c9}
+.t1 .band{flex:1;background:#2453c9;color:#fff;padding:36px 44px;display:flex;flex-direction:column;justify-content:center}
+.t1 .role{font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.92;margin-bottom:14px;font-weight:600}
+.t1 .n1{font-family:Montserrat,sans-serif;font-size:44px;font-weight:800;letter-spacing:3px;text-transform:uppercase;line-height:1.05}
+.t1 .n2{font-family:Montserrat,sans-serif;font-size:21px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-top:8px}
+.t1 .body{display:flex;flex:1;min-height:0}
+.t1 .side{width:268px;background:#eef2f8;padding:28px 26px}
+.t1 .main{flex:1;padding:28px 40px}
+.t1 h3{font-family:Montserrat,sans-serif;font-size:12.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#1b2a4a;border-bottom:2px solid #2453c9;padding-bottom:6px;margin:0 0 11px}
+.t1 .side li::marker{color:#2453c9}
+.t1 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+.t1 .cgrid .lb{font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:#2453c9;font-weight:700}
+.t1 .ent{margin-bottom:12px}
+.t1 .ent .h{font-weight:700;color:#1b2a4a;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
+.t1 .ent .m{color:#2453c9;font-size:11.5px;font-weight:600;margin-bottom:2px}
+.t1 .kv{margin-bottom:5px}
+.t1 .kv b{color:#1b2a4a}
+.t1 .lng{display:flex;justify-content:space-between;gap:8px;margin-bottom:4px}
+.t1 .lng span:last-child{color:#2453c9;font-weight:600;font-size:11.5px;text-align:right}
+
+/* ---- Варіант 2 (темно-синя бічна панель) ---- */
+.t2 .side{width:282px;background:#0f5c8f;color:#fff;padding:34px 0 24px}
+.t2 .ph{width:172px;height:172px;border-radius:50%;border:6px solid #fff;margin:0 auto 18px;background:#cfe0ee center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:48px;color:#0f5c8f}
+.t2 .name{text-align:center;font-family:Montserrat,sans-serif;font-weight:800;font-size:29px;text-transform:uppercase;line-height:1.12;padding:0 22px;margin-bottom:16px}
+.t2 .name small{display:block;font-size:14px;font-weight:600;margin-top:6px;letter-spacing:1px;opacity:.95}
+.t2 .info{text-align:center;padding:0 26px;margin-bottom:10px}
+.t2 .info b{display:block;font-size:12.5px}
+.t2 .sh{background:#0a4670;padding:8px 28px;margin:16px 0 10px;font-family:Montserrat,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:1px;font-size:14px}
+.t2 .sp{padding:0 28px}
+.t2 .lrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;gap:10px}
+.t2 .dots{white-space:nowrap}
+.t2 .dots i{display:inline-block;width:11px;height:11px;border-radius:50%;background:#fff;margin-left:4px}
+.t2 .dots i.off{background:#5d93ba}
+.t2 .chk{list-style:none;padding:0}
+.t2 .chk li::before{content:'✓';font-weight:700;margin-right:8px}
+.t2 .main{flex:1;padding:34px 36px}
+.t2 h3{font-family:Montserrat,sans-serif;font-weight:800;color:#0f3e63;text-transform:uppercase;font-size:17px;margin:0 0 8px;letter-spacing:.5px}
+.t2 section{margin-bottom:18px}
+.t2 .ent{margin-bottom:9px}
+.t2 .ent .d{font-size:11.5px;color:#4a5a70}
+.t2 .ent .h{font-weight:700;color:#0f3e63}
+.t2 .ticks{list-style:none;padding:0}
+.t2 .ticks li{padding-left:20px;position:relative}
+.t2 .ticks li::before{content:'✓';position:absolute;left:0;color:#0f5c8f;font-weight:700}
+
+/* ---- Варіант 3 (банер з ім’ям, «пігулки» розділів) ---- */
+.t3 .side{width:292px;background:#eef1f4;padding:30px 26px}
+.t3 .ph{width:188px;height:188px;border-radius:50%;margin:0 auto 20px;border:9px solid #0e4a6e;background:#d4dde6 center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:50px;color:#0e4a6e}
+.t3 .side h3{border:2px solid #0e4a6e;border-radius:22px;text-align:center;font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:3px;color:#0e4a6e;padding:5px;margin:0 0 11px;text-transform:uppercase;font-size:13px}
+.t3 .side section{margin-bottom:18px}
+.t3 .ci{background:#0e4a6e;color:#fff;border-radius:16px;padding:6px 14px;margin-bottom:7px;font-size:11.5px;display:flex;gap:9px;align-items:center;word-break:break-word}
+.t3 .ci span:first-child{font-weight:700;opacity:.85;flex:none}
+.t3 .rings{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.t3 .ring{width:72px;text-align:center;font-size:11px;font-weight:600;color:#0e4a6e}
+.t3 .rw{position:relative;width:64px;height:64px;margin:0 auto 4px}
+.t3 .rw svg{display:block}
+.t3 .rw b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:#0e4a6e}
+.t3 .main{flex:1;display:flex;flex-direction:column;min-width:0}
+.t3 .banner{background:#0e4a6e;color:#fff;padding:38px 36px;margin-top:34px;flex:none}
+.t3 .banner .n{font-family:Montserrat,sans-serif;font-weight:800;font-size:38px;text-transform:uppercase;line-height:1.08;letter-spacing:1px}
+.t3 .banner .n small{display:block;font-size:19px;font-weight:700;margin-top:4px}
+.t3 .banner .r{font-size:17px;margin-top:8px;font-weight:600;letter-spacing:.5px}
+.t3 .mbody{flex:1;padding:24px 34px}
+.t3 .mbody h3{display:inline-block;background:#0e4a6e;color:#fff;border-radius:18px;padding:5px 22px;font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:13px;margin:0 0 12px}
+.t3 .mbody section{margin-bottom:16px}
+.t3 .tl{display:flex}
+.t3 .tl .yr{width:84px;flex:none;font-weight:700;color:#0e4a6e;text-align:center;font-size:11px;padding-right:10px;line-height:1.35}
+.t3 .tl .bd{border-left:2px solid #0e4a6e;padding:0 0 12px 16px;position:relative;flex:1;min-width:0}
+.t3 .tl .bd::before{content:'';position:absolute;left:-7px;top:2px;width:8px;height:8px;border:2px solid #0e4a6e;border-radius:50%;background:#fff}
+.t3 .tl .h{font-weight:700;color:#14334a}
+.t3 .edu{display:flex;justify-content:space-between;gap:14px;margin-bottom:8px}
+.t3 .edu .h{font-weight:700;color:#14334a}
+.t3 .edu .y{font-weight:700;color:#14334a;white-space:nowrap}
+.t3 .about{display:grid;grid-template-columns:1fr 1fr;gap:8px 22px}
+.t3 .about .lb{font-weight:700;color:#14334a}
+</style>
+</head>
+<body>
+
+<header class="app">
+  <div class="app-in">
+    <div class="brand">
+      <button class="logo-box" id="logoBtn" title="Натисніть, щоб завантажити логотип компанії">
+        <img id="logoImg" alt="Логотип" style="display:none">
+        <span class="ph-logo" id="logoPh">ЛОГОТИП</span>
+      </button>
+      <input type="file" id="logoInput" accept="image/*" hidden>
+      <div class="brand-txt">KAN Development<small>Конструктор резюме для студентів</small></div>
+    </div>
+    <div class="app-actions">
+      <button class="btn btn-ghost" id="demoBtn">Заповнити прикладом</button>
+      <button class="btn btn-ghost" id="clearBtn">Очистити</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="intro"><span class="dot"></span><div>Заповніть поля зліва — резюме оновлюється одразу. Оберіть один із <b>3 варіантів дизайну</b> та завантажте його у <b>PDF</b>. Дані зберігаються лише у вашому браузері.</div></div>
+
+  <!-- ============ ФОРМА ============ -->
+  <form id="form" autocomplete="off" onsubmit="return false">
+
+    <div class="card">
+      <h2><span class="num">1</span>Ваше фото</h2>
+      <p class="hint">Портретне фото на світлому фоні, обличчя по центру.</p>
+      <div class="photo-row">
+        <div class="photo-prev" id="photoPrev">Немає фото</div>
+        <label class="btn btn-light file-btn">Завантажити фото<input type="file" id="photoInput" accept="image/*"></label>
+        <button type="button" class="btn btn-light" id="photoDel">Видалити</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">2</span>Прізвище, ім’я, по батькові</h2>
+      <p class="hint">Вкажіть повністю. Контакти — щоб роботодавець міг з вами зв’язатися.</p>
+      <div class="grid3">
+        <label class="f">Прізвище<input type="text" data-f="last" placeholder="Шевченко"></label>
+        <label class="f">Ім’я<input type="text" data-f="first" placeholder="Олена"></label>
+        <label class="f">По батькові<input type="text" data-f="middle" placeholder="Іванівна"></label>
+      </div>
+      <div class="grid" style="margin-top:12px">
+        <label class="f full">Бажана посада / напрям<input type="text" data-f="position" placeholder="Стажер-архітектор, помічник інженера ПТВ…"></label>
+        <label class="f">Телефон<input type="tel" data-f="phone" placeholder="+380 67 000 00 00"></label>
+        <label class="f">Email<input type="email" data-f="email" placeholder="name@gmail.com"></label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">3</span>Де проживаєте / чи готові до переїзду?</h2>
+      <p class="hint">&nbsp;</p>
+      <div class="grid">
+        <label class="f">Місто проживання<input type="text" data-f="city" placeholder="Київ, Оболонський район"></label>
+        <label class="f">Готовність до переїзду
+          <select data-f="relocate">
+            <option value="">— оберіть —</option>
+            <option>Готовий(-а) до переїзду</option>
+            <option>Розгляну варіанти</option>
+            <option>Не готовий(-а) до переїзду</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">4</span>Ваша освіта</h2>
+      <p class="hint">ВНЗ, факультет, курс і форма навчання.</p>
+      <div class="grid">
+        <label class="f full">ВНЗ<input type="text" data-f="uni" placeholder="Київський національний університет будівництва і архітектури"></label>
+        <label class="f">Факультет<input type="text" data-f="faculty" placeholder="Архітектурний факультет"></label>
+        <label class="f">Спеціальність<input type="text" data-f="specialty" placeholder="191 Архітектура та містобудування"></label>
+        <label class="f">Курс
+          <select data-f="course">
+            <option value="">— оберіть —</option>
+            <option>1 курс (бакалаврат)</option><option>2 курс (бакалаврат)</option>
+            <option>3 курс (бакалаврат)</option><option>4 курс (бакалаврат)</option>
+            <option>1 курс (магістратура)</option><option>2 курс (магістратура)</option>
+            <option>Випускник(-ця)</option>
+          </select>
+        </label>
+        <label class="f">Форма навчання
+          <select data-f="studyForm">
+            <option value="">— оберіть —</option>
+            <option>Денна</option><option>Заочна</option><option>Дистанційна</option><option>Вечірня</option><option>Змішана</option>
+          </select>
+        </label>
+        <label class="f">Роки навчання<input type="text" data-f="eduYears" placeholder="2023 – 2027"></label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">5</span>Ваш досвід</h2>
+      <p class="hint">Робота, стажування, практика. Якщо досвіду ще немає — пропустіть і заповніть пункт 7.</p>
+      <div id="rep-exp"></div>
+      <button type="button" class="add" data-add="exp">+ Додати досвід</button>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">6</span>Навички (чому ви навчились)</h2>
+      <p class="hint">Кожна навичка з нового рядка.</p>
+      <label class="f"><textarea data-f="skills" rows="5" placeholder="AutoCAD, Revit&#10;Читання робочої документації&#10;Робота в команді"></textarea></label>
+      <div style="margin-top:14px;font-size:13px;font-weight:600;color:#33435f;margin-bottom:8px">Іноземні мови</div>
+      <div id="rep-langs"></div>
+      <button type="button" class="add" data-add="langs">+ Додати мову</button>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">7</span>Проєкти та активності</h2>
+      <p class="hint">Якщо немає досвіду — волонтерські проєкти, курсові, дипломні роботи або підробітки.</p>
+      <div id="rep-projects"></div>
+      <button type="button" class="add" data-add="projects">+ Додати проєкт</button>
+    </div>
+
+    <div class="card">
+      <h2><span class="num">8</span>Про себе</h2>
+      <p class="hint">Хобі, улюблена книга, спорт, інші досягнення.</p>
+      <div class="grid">
+        <label class="f full">Коротко про себе<textarea data-f="about" rows="3" placeholder="Студентка 3 курсу, цікавлюся житловою архітектурою…"></textarea></label>
+        <label class="f">Хобі<input type="text" data-f="hobbies" placeholder="Фотографія, скетчинг"></label>
+        <label class="f">Спорт<input type="text" data-f="sport" placeholder="Біг, волейбол"></label>
+        <label class="f">Улюблена книга<input type="text" data-f="book" placeholder="«Тіні забутих предків», М. Коцюбинський"></label>
+        <label class="f">Інші досягнення<input type="text" data-f="achievements" placeholder="Призер студентського конкурсу…"></label>
+      </div>
+    </div>
+  </form>
+
+  <!-- ============ ПЕРЕГЛЯД ============ -->
+  <div class="preview">
+    <div class="pv-card">
+      <div class="pv-head">
+        <h2>Перегляд резюме</h2>
+        <span class="saved" id="saved"></span>
+      </div>
+      <div class="thumbs" id="thumbs"></div>
+      <div class="stage" id="stage"></div>
+      <div class="warn" id="warn">Текст не вміщається на одну сторінку в цьому варіанті — скоротіть описи або залиште менше пунктів.</div>
+      <div class="dl-row">
+        <button class="btn btn-primary" id="dlOne">Завантажити PDF (обраний варіант)</button>
+        <button class="btn btn-light" id="dlAll">Завантажити всі 3 PDF</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== Налаштування бренду: можна вставити посилання або data:URI логотипу ===== */
+const BRAND = { logo: '' };
+
+const KEY = 'kan-resume-v1', LOGO_KEY = 'kan-resume-logo';
+const LEVELS = ['', 'Початковий (A1)', 'Базовий (A2)', 'Середній (B1)', 'Вище середнього (B2)', 'Вільно (C1–C2)'];
+const PTYPES = ['Волонтерський проєкт', 'Курсова робота', 'Дипломна робота', 'Підробіток', 'Інше'];
+const VARIANTS = ['Варіант 1', 'Варіант 2', 'Варіант 3'];
+
+const blank = () => ({photo:'',last:'',first:'',middle:'',position:'',phone:'',email:'',city:'',relocate:'',
+  uni:'',faculty:'',specialty:'',course:'',studyForm:'',eduYears:'',
+  exp:[], skills:'', langs:[], projects:[], about:'',hobbies:'',sport:'',book:'',achievements:''});
+
+const DEMO = {photo:'',last:'Шевченко',first:'Олена',middle:'Іванівна',position:'Стажер-архітектор',
+  phone:'+380 67 123 45 67',email:'olena.shevchenko@gmail.com',city:'Київ',relocate:'Розгляну варіанти',
+  uni:'Київський національний університет будівництва і архітектури',faculty:'Архітектурний факультет',
+  specialty:'191 Архітектура та містобудування',course:'3 курс (бакалаврат)',studyForm:'Денна',eduYears:'2023 – 2027',
+  exp:[{period:'07.2025 – 08.2025',company:'Архітектурне бюро «Простір»',role:'Практикантка',desc:'Підготовка креслень фасадів у Revit, участь у робочих нарадах, оформлення презентацій для замовника.'}],
+  skills:'AutoCAD, Revit, SketchUp\nЧитання робочої документації\nAdobe Photoshop\nРобота в команді\nТайм-менеджмент',
+  langs:[{name:'Українська',level:'5'},{name:'Англійська',level:'4'},{name:'Німецька',level:'2'}],
+  projects:[
+    {type:'Курсова робота',title:'Житловий комплекс на 120 квартир',period:'2025',desc:'Концепція, генплан і планування типового поверху; захист на «відмінно».'},
+    {type:'Волонтерський проєкт',title:'Відновлення шкільного подвір’я',period:'2024',desc:'Розробка ескізу благоустрою та координація групи з 8 волонтерів.'}],
+  about:'Студентка 3 курсу, цікавлюся житловою архітектурою та сучасними технологіями будівництва. Швидко навчаюся і люблю працювати з реальними проєктами.',
+  hobbies:'Фотографія, скетчинг',sport:'Біг, волейбол',book:'«Тіні забутих предків», М. Коцюбинський',achievements:'Призерка студентського конкурсу «Архітектура майбутнього» 2025'};
+
+let S = load() || blank();
+let cur = 0;
+
+function load(){ try{ const v = localStorage.getItem(KEY); return v ? Object.assign(blank(), JSON.parse(v)) : null; }catch(e){ return null; } }
+let saveT;
+function save(){ clearTimeout(saveT); saveT = setTimeout(()=>{ try{ localStorage.setItem(KEY, JSON.stringify(S)); setSaved('Збережено в браузері'); }catch(e){ setSaved(''); } }, 400); }
+function setSaved(t){ document.getElementById('saved').textContent = t; }
+
+/* ===== Хелпери ===== */
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const has = s => s && String(s).trim();
+const br = s => esc(String(s).trim()).replace(/\n/g,'<br>');
+const lines = s => String(s||'').split(/\n|;/).map(x=>x.trim()).filter(Boolean);
+const items = s => String(s||'').split(/\n|,|;/).map(x=>x.trim()).filter(Boolean);
+const sec = (title, content) => content ? `<section><h3>${title}</h3>${content}</section>` : '';
+const filled = arr => (arr||[]).filter(o => Object.entries(o).some(([k,v]) => k!=='level' && k!=='type' && has(v)));
+
+function names(d){
+  const a = has(d.last) ? d.last : 'Прізвище';
+  const b = [d.first, d.middle].filter(has).join(' ') || 'Ім’я По батькові';
+  return {a, b};
+}
+function initials(d){ return esc(((d.first||'')[0]||'') + ((d.last||'')[0]||'')).toUpperCase(); }
+function photo(d, cls){
+  return d.photo
+    ? `<div class="${cls}" style="background-image:url('${d.photo}')"></div>`
+    : `<div class="${cls}"><span class="ini">${initials(d)}</span></div>`;
+}
+function eduHTML(d, mode){
+  if(!has(d.uni) && !has(d.faculty) && !has(d.specialty) && !has(d.course)) return '';
+  const sub = [d.faculty, d.specialty].filter(has).map(esc).join(', ');
+  const meta = [d.course, has(d.studyForm) ? d.studyForm + ' форма навчання' : ''].filter(has).map(esc).join(' · ');
+  if(mode==='t1') return `<div class="ent"><div class="h">${esc(d.uni)}</div>${has(d.eduYears)?`<div class="m">${esc(d.eduYears)}</div>`:''}${sub?`<div>${sub}</div>`:''}${meta?`<div>${meta}</div>`:''}</div>`;
+  if(mode==='t2') return `<div class="ent">${has(d.eduYears)?`<div class="d">${esc(d.eduYears)}</div>`:''}<div class="h">${esc(d.uni)}</div>${sub?`<div>${sub}</div>`:''}${meta?`<div>${meta}</div>`:''}</div>`;
+  return `<div class="edu"><div><div class="h">${esc(d.uni)}</div>${sub?`<div>${sub}</div>`:''}${meta?`<div>${meta}</div>`:''}</div>${has(d.eduYears)?`<div class="y">${esc(d.eduYears)}</div>`:''}</div>`;
+}
+function relocLine(d){ return [d.city, d.relocate].filter(has).map(esc).join(' · '); }
+
+/* ===== Варіант 1 ===== */
+function t1(d){
+  const n = names(d);
+  const skills = lines(d.skills);
+  const langs = filled(d.langs);
+  const other = [['Хобі',d.hobbies],['Спорт',d.sport],['Улюблена книга',d.book],['Досягнення',d.achievements]].filter(x=>has(x[1]));
+  const contacts = [['Телефон',d.phone],['Email',d.email],['Місто',d.city],['Переїзд',d.relocate]].filter(x=>has(x[1]));
+  const exp = filled(d.exp), pr = filled(d.projects);
+  return `<div class="page t1">
+    <div class="top">${photo(d,'ph')}
+      <div class="band">${has(d.position)?`<div class="role">${esc(d.position)}</div>`:''}<div class="n1">${esc(n.a)}</div><div class="n2">${esc(n.b)}</div></div>
+    </div>
+    <div class="body">
+      <div class="side fit">
+        ${sec('Про мене', has(d.about) && `<p>${br(d.about)}</p>`)}
+        ${sec('Навички', skills.length && `<ul>${skills.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`)}
+        ${sec('Мови', langs.length && langs.map(l=>`<div class="lng"><span>${esc(l.name)}</span><span>${LEVELS[+l.level]||''}</span></div>`).join(''))}
+        ${sec('Інше', other.length && other.map(o=>`<div class="kv"><b>${o[0]}:</b> ${esc(o[1])}</div>`).join(''))}
+      </div>
+      <div class="main fit">
+        ${sec('Контактна інформація', contacts.length && `<div class="cgrid">${contacts.map(c=>`<div><div class="lb">${c[0]}</div>${esc(c[1])}</div>`).join('')}</div>`)}
+        ${sec('Освіта', eduHTML(d,'t1'))}
+        ${sec('Досвід роботи', exp.length && exp.map(x=>`<div class="ent"><div class="h">${esc(x.role)}${has(x.company)?' — '+esc(x.company):''}</div>${has(x.period)?`<div class="m">${esc(x.period)}</div>`:''}${has(x.desc)?`<p>${br(x.desc)}</p>`:''}</div>`).join(''))}
+        ${sec('Проєкти та активності', pr.length && pr.map(x=>`<div class="ent"><div class="h">${esc(x.title)}</div><div class="m">${esc(x.type)}${has(x.period)?' · '+esc(x.period):''}</div>${has(x.desc)?`<p>${br(x.desc)}</p>`:''}</div>`).join(''))}
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ===== Варіант 2 ===== */
+function t2(d){
+  const n = names(d);
+  const langs = filled(d.langs);
+  const hob = [...items(d.hobbies), ...items(d.sport)];
+  const exp = filled(d.exp), pr = filled(d.projects), skills = lines(d.skills);
+  const dots = lv => `<span class="dots">${[1,2,3,4,5].map(i=>`<i class="${i<=+lv?'':'off'}"></i>`).join('')}</span>`;
+  return `<div class="page t2">
+    <div class="side fit">
+      ${photo(d,'ph')}
+      <div class="name">${esc(n.a)}<small>${esc(n.b)}</small></div>
+      ${relocLine(d)?`<div class="info"><b>Місце проживання</b>${relocLine(d)}</div>`:''}
+      ${(has(d.phone)||has(d.email))?`<div class="info"><b>Контакти</b>${[d.phone,d.email].filter(has).map(esc).join('<br>')}</div>`:''}
+      ${langs.length?`<div class="sh">Мови</div><div class="sp">${langs.map(l=>`<div class="lrow"><span>${esc(l.name)}</span>${dots(l.level)}</div>`).join('')}</div>`:''}
+      ${hob.length?`<div class="sh">Хобі та спорт</div><div class="sp"><ul class="chk">${hob.map(h=>`<li>${esc(h)}</li>`).join('')}</ul></div>`:''}
+    </div>
+    <div class="main fit">
+      ${sec(has(d.position)?'Мета':'Про себе', (has(d.position)||has(d.about)) && `${has(d.position)?`<p><b>Посада:</b> ${esc(d.position)}</p>`:''}${has(d.about)?`<p>${br(d.about)}</p>`:''}`)}
+      ${sec('Освіта', eduHTML(d,'t2'))}
+      ${sec('Досвід', exp.length && exp.map(x=>`<div class="ent">${has(x.period)?`<div class="d">${esc(x.period)}</div>`:''}<div class="h">${esc(x.role)}</div>${has(x.company)?`<div>${esc(x.company)}</div>`:''}${has(x.desc)?`<p>${br(x.desc)}</p>`:''}</div>`).join(''))}
+      ${sec('Проєкти', pr.length && pr.map(x=>`<div class="ent"><div class="d">${esc(x.type)}${has(x.period)?' · '+esc(x.period):''}</div><div class="h">${esc(x.title)}</div>${has(x.desc)?`<p>${br(x.desc)}</p>`:''}</div>`).join(''))}
+      ${sec('Навички', skills.length && `<ul class="ticks">${skills.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`)}
+      ${sec('Досягнення', has(d.achievements) && `<p>${br(d.achievements)}</p>`)}
+      ${sec('Улюблена книга', has(d.book) && `<p>${esc(d.book)}</p>`)}
+    </div>
+  </div>`;
+}
+
+/* ===== Варіант 3 ===== */
+function ring(p){
+  const r = 27, c = 2*Math.PI*r;
+  return `<div class="rw"><svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="${r}" fill="none" stroke="#c7d3df" stroke-width="7"/><circle cx="32" cy="32" r="${r}" fill="none" stroke="#0e4a6e" stroke-width="7" stroke-dasharray="${(c*p/100).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 32 32)"/></svg><b>${p}%</b></div>`;
+}
+function t3(d){
+  const n = names(d);
+  const langs = filled(d.langs), skills = lines(d.skills), exp = filled(d.exp), pr = filled(d.projects);
+  const contacts = [['Тел.',d.phone],['@',d.email],['Місто',d.city],['Переїзд',d.relocate]].filter(x=>has(x[1]));
+  const about = [['Хобі',d.hobbies],['Спорт',d.sport],['Улюблена книга',d.book],['Досягнення',d.achievements]].filter(x=>has(x[1]));
+  const tl = (yr, body) => `<div class="tl"><div class="yr">${yr}</div><div class="bd">${body}</div></div>`;
+  return `<div class="page t3">
+    <div class="side fit">
+      ${photo(d,'ph')}
+      ${sec('Про мене', has(d.about) && `<p>${br(d.about)}</p>`)}
+      ${contacts.length?`<section>${contacts.map(c=>`<div class="ci"><span>${c[0]}</span><span>${esc(c[1])}</span></div>`).join('')}</section>`:''}
+      ${sec('Навички', skills.length && `<ul>${skills.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`)}
+      ${sec('Мови', langs.length && `<div class="rings">${langs.map(l=>`<div class="ring">${ring((+l.level||1)*20)}${esc(l.name)}</div>`).join('')}</div>`)}
+    </div>
+    <div class="main">
+      <div class="banner"><div class="n">${esc(n.a)}<small>${esc(n.b)}</small></div>${has(d.position)?`<div class="r">${esc(d.position)}</div>`:''}</div>
+      <div class="mbody fit">
+        ${sec('Освіта', eduHTML(d,'t3'))}
+        ${sec('Досвід', exp.length && exp.map(x=>tl(esc(x.period).replace(/\s*[–-]\s*/,'<br>–<br>'), `<div class="h">${esc(x.company)}${has(x.company)&&has(x.role)?' | ':''}${esc(x.role)}</div>${has(x.desc)?`<p>${br(x.desc)}</p>`:''}`)).join(''))}
+        ${sec('Проєкти', pr.length && pr.map(x=>tl(esc(x.period), `<div class="h">${esc(x.title)}</div><div style="color:#0e4a6e;font-size:11.5px;font-weight:600">${esc(x.type)}</div>${has(x.desc)?`<p>${br(x.desc)}</p>`:''}`)).join(''))}
+        ${sec('Про себе', about.length && `<div class="about">${about.map(a=>`<div><div class="lb">${a[0]}</div>${esc(a[1])}</div>`).join('')}</div>`)}
+      </div>
+    </div>
+  </div>`;
+}
+
+const TPL = [t1, t2, t3];
+
+/* ===== Повторювані блоки форми ===== */
+function repExp(x,i){ return `<div class="rep"><button type="button" class="del" data-del="exp" data-i="${i}">✕ Видалити</button><div class="tag">Досвід ${i+1}</div>
+  <div class="grid">
+    <label class="f">Компанія / організація<input type="text" data-l="exp" data-i="${i}" data-k="company" value="${esc(x.company)}"></label>
+    <label class="f">Посада<input type="text" data-l="exp" data-i="${i}" data-k="role" value="${esc(x.role)}"></label>
+    <label class="f full">Період<input type="text" data-l="exp" data-i="${i}" data-k="period" value="${esc(x.period)}" placeholder="06.2025 – 09.2025"></label>
+    <label class="f full">Що робили<textarea rows="2" data-l="exp" data-i="${i}" data-k="desc">${esc(x.desc)}</textarea></label>
+  </div></div>`; }
+function repProj(x,i){ return `<div class="rep"><button type="button" class="del" data-del="projects" data-i="${i}">✕ Видалити</button><div class="tag">Проєкт ${i+1}</div>
+  <div class="grid">
+    <label class="f">Тип<select data-l="projects" data-i="${i}" data-k="type">${PTYPES.map(t=>`<option ${t===x.type?'selected':''}>${t}</option>`).join('')}</select></label>
+    <label class="f">Рік / період<input type="text" data-l="projects" data-i="${i}" data-k="period" value="${esc(x.period)}" placeholder="2025"></label>
+    <label class="f full">Назва<input type="text" data-l="projects" data-i="${i}" data-k="title" value="${esc(x.title)}"></label>
+    <label class="f full">Опис і результат<textarea rows="2" data-l="projects" data-i="${i}" data-k="desc">${esc(x.desc)}</textarea></label>
+  </div></div>`; }
+function repLang(x,i){ return `<div class="rep" style="padding:12px 14px"><button type="button" class="del" data-del="langs" data-i="${i}">✕</button>
+  <div class="grid" style="padding-right:30px">
+    <label class="f">Мова<input type="text" data-l="langs" data-i="${i}" data-k="name" value="${esc(x.name)}" placeholder="Англійська"></label>
+    <label class="f">Рівень<select data-l="langs" data-i="${i}" data-k="level">${[1,2,3,4,5].map(v=>`<option value="${v}" ${String(v)===String(x.level)?'selected':''}>${LEVELS[v]}</option>`).join('')}</select></label>
+  </div></div>`; }
+const REP = {exp:[repExp,()=>({company:'',role:'',period:'',desc:''})], projects:[repProj,()=>({type:PTYPES[0],title:'',period:'',desc:''})], langs:[repLang,()=>({name:'',level:'3'})]};
+
+function renderReps(){ for(const k in REP) document.getElementById('rep-'+k).innerHTML = S[k].map(REP[k][0]).join(''); }
+function fillForm(){
+  document.querySelectorAll('[data-f]').forEach(el => el.value = S[el.dataset.f] || '');
+  renderReps(); showPhoto();
+}
+
+/* ===== Перегляд ===== */
+const stage = document.getElementById('stage'), thumbs = document.getElementById('thumbs');
+function buildThumbs(){
+  thumbs.innerHTML = VARIANTS.map((v,i)=>`<div class="thumb ${i===cur?'on':''}" data-v="${i}"><div class="tstage"></div>${v}</div>`).join('');
+}
+let raf;
+function update(){ cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); }
+function draw(){
+  stage.innerHTML = TPL[cur](S);
+  thumbs.querySelectorAll('.thumb').forEach((t,i)=>{ t.classList.toggle('on', i===cur); t.querySelector('.tstage').innerHTML = TPL[i](S); });
+  fit(); checkOverflow(); save();
+}
+function fit(){
+  const w = stage.clientWidth, k = w/794;
+  stage.style.height = (1122*k) + 'px';
+  const p = stage.querySelector('.page'); if(p) p.style.transform = `scale(${k})`;
+  thumbs.querySelectorAll('.tstage').forEach(ts=>{ const pg = ts.querySelector('.page'); if(pg) pg.style.transform = `scale(${ts.clientWidth/794})`; });
+}
+function checkOverflow(){
+  const bad = [...stage.querySelectorAll('.fit')].some(el => el.scrollHeight > el.clientHeight + 2);
+  document.getElementById('warn').classList.toggle('show', bad);
+}
+new ResizeObserver(fit).observe(stage);
+
+/* ===== Події форми ===== */
+const form = document.getElementById('form');
+function onField(e){
+  const t = e.target;
+  if(t.dataset.f){ S[t.dataset.f] = t.value; update(); }
+  else if(t.dataset.l){ S[t.dataset.l][+t.dataset.i][t.dataset.k] = t.value; update(); }
+}
+form.addEventListener('input', onField);
+form.addEventListener('change', onField);
+form.addEventListener('click', e=>{
+  const a = e.target.closest('[data-add]'), d = e.target.closest('[data-del]');
+  if(a){ S[a.dataset.add].push(REP[a.dataset.add][1]()); renderReps(); update(); }
+  if(d){ S[d.dataset.del].splice(+d.dataset.i,1); renderReps(); update(); }
+});
+thumbs.addEventListener('click', e=>{ const t = e.target.closest('.thumb'); if(t){ cur = +t.dataset.v; update(); } });
+
+/* Фото: зменшуємо до 700px, щоб файл був легким */
+function readImage(file, max, cb){
+  const r = new FileReader();
+  r.onload = () => { const img = new Image(); img.onload = () => {
+      const k = Math.min(1, max/Math.max(img.width,img.height));
+      const c = document.createElement('canvas'); c.width = Math.round(img.width*k); c.height = Math.round(img.height*k);
+      const ctx = c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height); ctx.drawImage(img,0,0,c.width,c.height);
+      cb(c.toDataURL(file.type==='image/png'?'image/png':'image/jpeg', .9)); };
+    img.src = r.result; };
+  r.readAsDataURL(file);
+}
+function showPhoto(){
+  const p = document.getElementById('photoPrev');
+  p.style.backgroundImage = S.photo ? `url('${S.photo}')` : 'none';
+  p.textContent = S.photo ? '' : 'Немає фото';
+}
+document.getElementById('photoInput').addEventListener('change', e=>{
+  const f = e.target.files[0]; if(!f) return;
+  readImage(f, 700, url => { S.photo = url; showPhoto(); update(); });
+  e.target.value = '';
+});
+document.getElementById('photoDel').addEventListener('click', ()=>{ S.photo=''; showPhoto(); update(); });
+
+/* Логотип компанії */
+function showLogo(src){
+  const img = document.getElementById('logoImg'), ph = document.getElementById('logoPh');
+  if(src){ img.src = src; img.style.display='block'; ph.style.display='none'; }
+  else { img.style.display='none'; ph.style.display='block'; }
+}
+let savedLogo = ''; try{ savedLogo = localStorage.getItem(LOGO_KEY) || ''; }catch(e){}
+showLogo(savedLogo || BRAND.logo);
+document.getElementById('logoBtn').addEventListener('click', ()=>document.getElementById('logoInput').click());
+document.getElementById('logoInput').addEventListener('change', e=>{
+  const f = e.target.files[0]; if(!f) return;
+  readImage(f, 400, url => { showLogo(url); try{ localStorage.setItem(LOGO_KEY, url); }catch(err){} });
+});
+
+document.getElementById('demoBtn').addEventListener('click', ()=>{ const ph = S.photo; S = Object.assign(blank(), JSON.parse(JSON.stringify(DEMO))); S.photo = ph; fillForm(); update(); });
+document.getElementById('clearBtn').addEventListener('click', ()=>{ if(confirm('Очистити всі поля?')){ S = blank(); fillForm(); update(); } });
+
+/* ===== PDF ===== */
+function fileName(i){
+  const n = [S.last, S.first].filter(has).join('_').replace(/[\\/:*?"<>|\s]+/g,'_') || 'Резюме';
+  return `Резюме_${n}_варіант_${i+1}.pdf`;
+}
+async function exportPdf(i){
+  if(document.fonts && document.fonts.ready) await document.fonts.ready;
+  const tmp = document.createElement('div'); tmp.innerHTML = TPL[i](S);
+  const el = tmp.firstElementChild;
+  return html2pdf().set({
+    margin:0, filename:fileName(i),
+    image:{type:'jpeg', quality:0.97},
+    html2canvas:{scale:2, useCORS:true, backgroundColor:'#ffffff', scrollX:0, scrollY:0},
+    jsPDF:{unit:'mm', format:'a4', orientation:'portrait'},
+    pagebreak:{mode:[]}
+  }).from(el).save();
+}
+async function withBusy(btn, label, fn){
+  const old = btn.textContent; btn.disabled = true; btn.textContent = label;
+  try{ await fn(); } catch(e){ alert('Не вдалося створити PDF. Перевірте підключення до інтернету і спробуйте ще раз.'); }
+  btn.disabled = false; btn.textContent = old;
+}
+document.getElementById('dlOne').addEventListener('click', e=> withBusy(e.target, 'Створюю PDF…', ()=>exportPdf(cur)));
+document.getElementById('dlAll').addEventListener('click', e=> withBusy(e.target, 'Створюю 3 PDF…', async ()=>{ for(let i=0;i<3;i++) await exportPdf(i); }));
+
+/* старт */
+buildThumbs(); fillForm(); draw();
+</script>
+</body>
+</html>
