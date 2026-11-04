@@ -19,18 +19,36 @@ html,body{margin:0}
 body{font-family:'Open Sans',Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:15px}
 button,input,select,textarea{font:inherit;color:inherit}
 
-header.app{background:linear-gradient(120deg,var(--kan-d),var(--kan) 55%,var(--kan2));color:#fff}
-.app-in{max-width:1440px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:12px;min-width:0}
-.logo-box{height:46px;min-width:46px;padding:0 12px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;position:relative}
-.logo-box img{max-height:34px;max-width:170px;display:block}
-.logo-box .ph-logo{font-family:Montserrat,sans-serif;font-weight:800;color:var(--kan);font-size:13px;letter-spacing:.5px;white-space:nowrap}
-.brand-txt{font-family:Montserrat,sans-serif;font-weight:800;font-size:19px;letter-spacing:.3px;line-height:1.15}
-.brand-txt small{display:block;font-weight:500;font-size:12.5px;opacity:.85;letter-spacing:.4px}
-.app-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+/* Шапка сайту в стилі KAN */
+header.app{background:linear-gradient(180deg,#dbe1ea,#cfd6e2);color:#0b1f5e;border-bottom:1px solid #c3cbd9}
+.app-in{max-width:1440px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:18px;min-width:0}
+.kan-logo{width:92px;height:auto;flex:none;display:block;margin-left:24px}
+.brand-txt{font-family:Montserrat,sans-serif;font-weight:800;font-size:30px;letter-spacing:.2px;line-height:1.15;color:#0b1f5e}
+.brand-txt small{display:block;font-family:'Open Sans',Arial,sans-serif;font-weight:400;font-size:15.5px;color:#13286e;letter-spacing:0;margin-top:6px}
+.app-actions{margin-left:auto;display:flex;gap:14px;flex-wrap:wrap}
 .btn{border:1px solid transparent;border-radius:10px;padding:9px 16px;font-weight:600;cursor:pointer;transition:.15s;font-size:14px}
-.btn-ghost{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.35);color:#fff}
-.btn-ghost:hover{background:rgba(255,255,255,.22)}
+.btn-hd{background:#1236d6;color:#fff;font-weight:700;font-size:15.5px;padding:12px 24px}
+.btn-hd:hover{background:#0b27a8}
+.btn-hd-ghost{background:transparent;border:2px solid #fff;color:#fff;font-weight:700;font-size:15.5px;padding:10px 24px;text-shadow:0 1px 2px rgba(11,31,94,.35)}
+.btn-hd-ghost:hover{background:rgba(255,255,255,.3)}
+@media (max-width:640px){.kan-logo{width:58px;margin-left:0}.brand-txt{font-size:22px}.brand-txt small{font-size:13px}.app-actions{margin-left:0;width:100%}.app-actions .btn{flex:1}}
+
+/* Підпис внизу сайту */
+.site-ft{background:#dbe1ea;border-top:1px solid #c3cbd9;color:#13286e;text-align:center;padding:20px 16px;font-size:14px}
+.site-ft a{color:#1236d6;font-weight:700;text-decoration:none}
+.site-ft a:hover{text-decoration:underline}
+
+/* Вибір кольору шаблону */
+.colors{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fafcff}
+.colors .lb{font-size:13px;font-weight:600;color:#33435f}
+.sw{display:flex;flex-wrap:wrap;gap:6px}
+.sw button{width:24px;height:24px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #c9d4e6;cursor:pointer;padding:0}
+.sw button.on{box-shadow:0 0 0 2px var(--kan)}
+.cpick{position:relative;width:28px;height:28px;border-radius:50%;background:conic-gradient(#f44336,#ffeb3b,#4caf50,#00bcd4,#3f51b5,#e91e63,#f44336);cursor:pointer;flex:none;border:2px solid #fff;box-shadow:0 0 0 1px #c9d4e6}
+.cpick.on{box-shadow:0 0 0 2px var(--kan)}
+.cpick input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;padding:0;border:0}
+.btn-sm{padding:5px 10px;font-size:12.5px;margin-left:auto}
 .btn-primary{background:var(--kan);color:#fff}
 .btn-primary:hover{background:var(--kan-d)}
 .btn-light{background:#fff;border-color:var(--line);color:var(--kan)}
@@ -74,8 +92,9 @@ textarea{resize:vertical;min-height:70px}
 .pv-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
 .pv-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
 .pv-head h2{margin:0;font-family:Montserrat,sans-serif;font-size:16px;color:var(--kan);margin-right:auto}
-.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.thumb{border:2px solid var(--line);border-radius:10px;background:#fff;padding:6px;cursor:pointer;text-align:center;font-size:12.5px;font-weight:600;color:var(--mut)}
+.thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:12px}
+@media (max-width:640px){.thumbs{grid-template-columns:repeat(3,1fr)}}
+.thumb{border:2px solid var(--line);border-radius:10px;background:#fff;padding:5px;cursor:pointer;text-align:center;font-size:11.5px;font-weight:600;color:var(--mut)}
 .thumb.on{border-color:var(--kan);color:var(--kan);box-shadow:0 0 0 3px rgba(10,61,143,.12)}
 .thumb .tstage{width:100%;aspect-ratio:794/1122;overflow:hidden;position:relative;border-radius:4px;margin-bottom:5px;background:#eef2f8}
 .thumb .tstage .page{position:absolute;top:0;left:0;transform-origin:0 0;pointer-events:none}
@@ -97,84 +116,163 @@ textarea{resize:vertical;min-height:70px}
 .page .fit{overflow:hidden;min-height:0}
 .page .ini{font-family:Montserrat,sans-serif;font-weight:800;opacity:.55}
 
+/* Кольори шаблону задаються змінними: --c основний, --c2 темніший, --c3 дуже темний (заголовки),
+   --cl дуже світлий фон, --cs світлий, --cm середній, --ct «текстовий» (читається на білому), --on текст на основному */
+
 /* ---- Варіант 1 (синя шапка, світла бічна колонка) ---- */
 .t1{flex-direction:column}
 .t1 .top{display:flex;height:236px;flex:none}
-.t1 .ph{width:268px;height:236px;background:#dbe4f2 center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:56px;color:#2453c9}
-.t1 .band{flex:1;background:#2453c9;color:#fff;padding:36px 44px;display:flex;flex-direction:column;justify-content:center}
+.t1 .ph{width:268px;height:236px;background:var(--cs) center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:56px;color:var(--c)}
+.t1 .band{flex:1;background:var(--c);color:var(--on);padding:36px 44px;display:flex;flex-direction:column;justify-content:center}
 .t1 .role{font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.92;margin-bottom:14px;font-weight:600}
 .t1 .n1{font-family:Montserrat,sans-serif;font-size:44px;font-weight:800;letter-spacing:3px;text-transform:uppercase;line-height:1.05}
 .t1 .n2{font-family:Montserrat,sans-serif;font-size:21px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-top:8px}
 .t1 .body{display:flex;flex:1;min-height:0}
-.t1 .side{width:268px;background:#eef2f8;padding:28px 26px}
+.t1 .side{width:268px;background:var(--cl);padding:28px 26px}
 .t1 .main{flex:1;padding:28px 40px}
-.t1 h3{font-family:Montserrat,sans-serif;font-size:12.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#1b2a4a;border-bottom:2px solid #2453c9;padding-bottom:6px;margin:0 0 11px}
-.t1 .side li::marker{color:#2453c9}
+.t1 h3{font-family:Montserrat,sans-serif;font-size:12.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--c3);border-bottom:2px solid var(--c);padding-bottom:6px;margin:0 0 11px}
+.t1 .side li::marker{color:var(--ct)}
 .t1 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
-.t1 .cgrid .lb{font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:#2453c9;font-weight:700}
+.t1 .cgrid .lb{font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--ct);font-weight:700}
 .t1 .ent{margin-bottom:12px}
-.t1 .ent .h{font-weight:700;color:#1b2a4a;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
-.t1 .ent .m{color:#2453c9;font-size:11.5px;font-weight:600;margin-bottom:2px}
+.t1 .ent .h{font-weight:700;color:var(--c3);text-transform:uppercase;font-size:12px;letter-spacing:.4px}
+.t1 .ent .m{color:var(--ct);font-size:11.5px;font-weight:600;margin-bottom:2px}
 .t1 .kv{margin-bottom:5px}
-.t1 .kv b{color:#1b2a4a}
+.t1 .kv b{color:var(--c3)}
 .t1 .lng{display:flex;justify-content:space-between;gap:8px;margin-bottom:4px}
-.t1 .lng span:last-child{color:#2453c9;font-weight:600;font-size:11.5px;text-align:right}
+.t1 .lng span:last-child{color:var(--ct);font-weight:600;font-size:11.5px;text-align:right}
 
 /* ---- Варіант 2 (темно-синя бічна панель) ---- */
-.t2 .side{width:282px;background:#0f5c8f;color:#fff;padding:34px 0 24px}
-.t2 .ph{width:172px;height:172px;border-radius:50%;border:6px solid #fff;margin:0 auto 18px;background:#cfe0ee center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:48px;color:#0f5c8f}
+.t2 .side{width:282px;background:var(--c);color:var(--on);padding:34px 0 24px}
+.t2 .ph{width:172px;height:172px;border-radius:50%;border:6px solid #fff;margin:0 auto 18px;background:var(--cs) center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:48px;color:var(--c)}
 .t2 .name{text-align:center;font-family:Montserrat,sans-serif;font-weight:800;font-size:29px;text-transform:uppercase;line-height:1.12;padding:0 22px;margin-bottom:16px}
 .t2 .name small{display:block;font-size:14px;font-weight:600;margin-top:6px;letter-spacing:1px;opacity:.95}
 .t2 .info{text-align:center;padding:0 26px;margin-bottom:10px}
 .t2 .info b{display:block;font-size:12.5px}
-.t2 .sh{background:#0a4670;padding:8px 28px;margin:16px 0 10px;font-family:Montserrat,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:1px;font-size:14px}
+.t2 .sh{background:var(--c2);padding:8px 28px;margin:16px 0 10px;font-family:Montserrat,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:1px;font-size:14px}
 .t2 .sp{padding:0 28px}
 .t2 .lrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;gap:10px}
 .t2 .dots{white-space:nowrap}
-.t2 .dots i{display:inline-block;width:11px;height:11px;border-radius:50%;background:#fff;margin-left:4px}
-.t2 .dots i.off{background:#5d93ba}
+.t2 .dots i{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--on);margin-left:4px}
+.t2 .dots i.off{opacity:.3}
 .t2 .chk{list-style:none;padding:0}
 .t2 .chk li::before{content:'✓';font-weight:700;margin-right:8px}
 .t2 .main{flex:1;padding:34px 36px}
-.t2 h3{font-family:Montserrat,sans-serif;font-weight:800;color:#0f3e63;text-transform:uppercase;font-size:17px;margin:0 0 8px;letter-spacing:.5px}
+.t2 h3{font-family:Montserrat,sans-serif;font-weight:800;color:var(--c3);text-transform:uppercase;font-size:17px;margin:0 0 8px;letter-spacing:.5px}
 .t2 section{margin-bottom:18px}
 .t2 .ent{margin-bottom:9px}
 .t2 .ent .d{font-size:11.5px;color:#4a5a70}
-.t2 .ent .h{font-weight:700;color:#0f3e63}
+.t2 .ent .h{font-weight:700;color:var(--c3)}
 .t2 .ticks{list-style:none;padding:0}
 .t2 .ticks li{padding-left:20px;position:relative}
-.t2 .ticks li::before{content:'✓';position:absolute;left:0;color:#0f5c8f;font-weight:700}
+.t2 .ticks li::before{content:'✓';position:absolute;left:0;color:var(--ct);font-weight:700}
 
 /* ---- Варіант 3 (банер з ім’ям, «пігулки» розділів) ---- */
-.t3 .side{width:292px;background:#eef1f4;padding:30px 26px}
-.t3 .ph{width:188px;height:188px;border-radius:50%;margin:0 auto 20px;border:9px solid #0e4a6e;background:#d4dde6 center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:50px;color:#0e4a6e}
-.t3 .side h3{border:2px solid #0e4a6e;border-radius:22px;text-align:center;font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:3px;color:#0e4a6e;padding:5px;margin:0 0 11px;text-transform:uppercase;font-size:13px}
+.t3 .side{width:292px;background:var(--cl);padding:30px 26px}
+.t3 .ph{width:188px;height:188px;border-radius:50%;margin:0 auto 20px;border:9px solid var(--c);background:var(--cs) center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:50px;color:var(--c)}
+.t3 .side h3{border:2px solid var(--ct);border-radius:22px;text-align:center;font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:3px;color:var(--ct);padding:5px;margin:0 0 11px;text-transform:uppercase;font-size:13px}
 .t3 .side section{margin-bottom:18px}
-.t3 .ci{background:#0e4a6e;color:#fff;border-radius:16px;padding:6px 14px;margin-bottom:7px;font-size:11.5px;display:flex;gap:9px;align-items:center;word-break:break-word}
+.t3 .ci{background:var(--c);color:var(--on);border-radius:16px;padding:6px 14px;margin-bottom:7px;font-size:11.5px;display:flex;gap:9px;align-items:center;word-break:break-word}
 .t3 .ci span:first-child{font-weight:700;opacity:.85;flex:none}
 .t3 .rings{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.t3 .ring{width:72px;text-align:center;font-size:11px;font-weight:600;color:#0e4a6e}
+.t3 .ring{width:72px;text-align:center;font-size:11px;font-weight:600;color:var(--ct)}
 .t3 .rw{position:relative;width:64px;height:64px;margin:0 auto 4px}
 .t3 .rw svg{display:block}
-.t3 .rw b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:#0e4a6e}
+.t3 .rw b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ct)}
 .t3 .main{flex:1;display:flex;flex-direction:column;min-width:0}
-.t3 .banner{background:#0e4a6e;color:#fff;padding:38px 36px;margin-top:34px;flex:none}
+.t3 .banner{background:var(--c);color:var(--on);padding:38px 36px;margin-top:34px;flex:none}
 .t3 .banner .n{font-family:Montserrat,sans-serif;font-weight:800;font-size:38px;text-transform:uppercase;line-height:1.08;letter-spacing:1px}
 .t3 .banner .n small{display:block;font-size:19px;font-weight:700;margin-top:4px}
 .t3 .banner .r{font-size:17px;margin-top:8px;font-weight:600;letter-spacing:.5px}
 .t3 .mbody{flex:1;padding:24px 34px}
-.t3 .mbody h3{display:inline-block;background:#0e4a6e;color:#fff;border-radius:18px;padding:5px 22px;font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:13px;margin:0 0 12px}
+.t3 .mbody h3{display:inline-block;background:var(--c);color:var(--on);border-radius:18px;padding:5px 22px;font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:13px;margin:0 0 12px}
 .t3 .mbody section{margin-bottom:16px}
 .t3 .tl{display:flex}
-.t3 .tl .yr{width:84px;flex:none;font-weight:700;color:#0e4a6e;text-align:center;font-size:11px;padding-right:10px;line-height:1.35}
-.t3 .tl .bd{border-left:2px solid #0e4a6e;padding:0 0 12px 16px;position:relative;flex:1;min-width:0}
-.t3 .tl .bd::before{content:'';position:absolute;left:-7px;top:2px;width:8px;height:8px;border:2px solid #0e4a6e;border-radius:50%;background:#fff}
-.t3 .tl .h{font-weight:700;color:#14334a}
+.t3 .tl .yr{width:84px;flex:none;font-weight:700;color:var(--ct);text-align:center;font-size:11px;padding-right:10px;line-height:1.35}
+.t3 .tl .bd{border-left:2px solid var(--c);padding:0 0 12px 16px;position:relative;flex:1;min-width:0}
+.t3 .tl .bd::before{content:'';position:absolute;left:-7px;top:2px;width:8px;height:8px;border:2px solid var(--c);border-radius:50%;background:#fff}
+.t3 .tl .h{font-weight:700;color:var(--c3)}
 .t3 .edu{display:flex;justify-content:space-between;gap:14px;margin-bottom:8px}
-.t3 .edu .h{font-weight:700;color:#14334a}
-.t3 .edu .y{font-weight:700;color:#14334a;white-space:nowrap}
+.t3 .edu .h{font-weight:700;color:var(--c3)}
+.t3 .edu .y{font-weight:700;color:var(--c3);white-space:nowrap}
 .t3 .about{display:grid;grid-template-columns:1fr 1fr;gap:8px 22px}
-.t3 .about .lb{font-weight:700;color:#14334a}
+.t3 .about .lb{font-weight:700;color:var(--c3)}
+
+/* ---- Варіант 4 (темна шапка, фото в рамці, дати в рамках) ---- */
+.t4{flex-direction:column;position:relative}
+.t4 .top{height:150px;flex:none;background:var(--c);color:var(--on);padding:0 40px 0 290px;display:flex;flex-direction:column;justify-content:center}
+.t4 .n{font-family:Montserrat,sans-serif;font-weight:600;font-size:30px;letter-spacing:5px;text-transform:uppercase;line-height:1.15}
+.t4 .n small{display:block;font-size:14px;letter-spacing:4px;font-weight:500;margin-top:4px}
+.t4 .r{margin-top:10px;padding-top:8px;border-top:1px solid var(--on);font-size:12.5px;letter-spacing:4px;text-transform:uppercase}
+.t4 .frame{position:absolute;left:26px;top:22px;width:212px;height:236px;border:2px solid var(--cm);padding:9px;z-index:1}
+.t4 .frame .ph{width:100%;height:100%;background:var(--cs) center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:52px;color:var(--c)}
+.t4 .body{flex:1;display:flex;min-height:0}
+.t4 .side{width:264px;flex:none;background:var(--cl);padding:132px 24px 20px 28px}
+.t4 .main{flex:1;min-width:0;padding:28px 40px 20px 30px}
+.t4 h3{font-family:Montserrat,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--c3);border-bottom:1px solid var(--c3);padding-bottom:5px;margin:0 0 10px}
+.t4 .main h3{font-size:14px;letter-spacing:3px;margin-bottom:12px}
+.t4 .side section{margin-bottom:18px}
+.t4 .main section{margin-bottom:18px}
+.t4 .ic{display:flex;gap:9px;align-items:flex-start;margin-bottom:6px;font-size:11.5px;word-break:break-word}
+.t4 .ic svg{flex:none;margin-top:2px}
+.t4 .lrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;font-size:11.5px;gap:8px}
+.t4 .sq{white-space:nowrap}
+.t4 .sq i{display:inline-block;width:7px;height:7px;margin-left:5px;background:var(--c)}
+.t4 .sq i.off{background:var(--cm)}
+.t4 .tags{display:flex;flex-wrap:wrap;gap:5px}
+.t4 .tags span{border:1px solid var(--c3);padding:2px 7px;font-size:10.5px;line-height:1.35}
+.t4 .tags.fill span{background:var(--c);color:var(--on);border-color:var(--c)}
+.t4 .ent{display:flex;gap:16px;margin-bottom:12px}
+.t4 .dt{width:84px;flex:none;border:1px solid var(--c3);padding:3px 6px;font-size:10.5px;line-height:1.3;align-self:flex-start;text-align:center}
+.t4 .dt.e{border-color:transparent}
+.t4 .ent .bd{flex:1;min-width:0}
+.t4 .ent .h{font-weight:700;font-size:13.5px;color:var(--c3)}
+.t4 .ent .co{color:var(--ct);font-size:12px;margin-bottom:2px}
+.t4 .bot{height:18px;flex:none;background:var(--c)}
+
+/* ---- Варіант 5 (кольорова шапка з діагоналлю, кругле фото) ---- */
+.t5{flex-direction:column}
+.t5 .hd{height:138px;flex:none;position:relative;padding:22px 50px 0;text-align:center}
+.t5 .acc{position:absolute;left:0;top:0;width:190px;height:138px}
+.t5 .n{position:relative;font-family:Montserrat,sans-serif;font-weight:800;font-size:34px;letter-spacing:2px;text-transform:uppercase;color:var(--on);line-height:1.1}
+.t5 .n small{display:block;font-size:16px;font-weight:600;letter-spacing:3px;margin-top:5px}
+.t5 .body{flex:1;min-height:0;display:flex;gap:30px;padding:0 42px 0 40px}
+.t5 .side{width:262px;flex:none}
+.t5 .main{flex:1;min-width:0;padding-top:6px}
+.t5 .ph{width:196px;height:196px;border-radius:50%;margin:0 auto 22px;background:var(--cs) center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:52px;color:var(--c)}
+.t5 h3{font-family:Montserrat,sans-serif;font-weight:800;font-size:14.5px;text-transform:uppercase;color:var(--ct);margin:0 0 7px;letter-spacing:.3px}
+.t5 .main h3{font-size:17px}
+.t5 section{margin-bottom:16px}
+.t5 li::marker{color:var(--ct)}
+.t5 .h{font-weight:700;color:#2b2b2b;text-transform:uppercase;font-size:12px;letter-spacing:.3px}
+.t5 .m{font-size:11.5px;color:var(--ct);font-weight:600;margin-bottom:3px}
+.t5 .ent{margin-bottom:10px}
+.t5 .ft{height:92px;flex:none;display:flex;align-items:flex-end;justify-content:flex-end;padding:0 42px 18px;color:var(--on);font-family:Montserrat,sans-serif;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.5px;text-align:right}
+.t5 .ft span{max-width:380px;line-height:1.25}
+
+/* ---- Варіант 6 (кольорова панель, велике кругле фото) ---- */
+.t6{flex-direction:column;padding-bottom:36px}
+.t6 .top{height:292px;flex:none;position:relative}
+.t6 .band{position:absolute;left:36px;top:48px;width:540px;min-height:178px;background:var(--c);color:var(--on);padding:28px 90px 26px 30px}
+.t6 .n{font-family:Montserrat,sans-serif;font-weight:800;font-size:40px;text-transform:uppercase;line-height:1.05;letter-spacing:.5px}
+.t6 .n small{display:block;font-size:19px;font-weight:700;margin-top:5px;letter-spacing:1px}
+.t6 .role{display:inline-block;background:#fff;color:var(--ct);font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;text-transform:uppercase;letter-spacing:.5px;padding:6px 26px 6px 30px;margin:16px 0 0 -30px}
+.t6 .ph{position:absolute;right:28px;top:16px;width:264px;height:264px;border-radius:50%;border:8px solid #fff;background:var(--cs) center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:64px;color:var(--c)}
+.t6 .panel{flex:1;min-height:0;margin:0 36px;background:var(--c);color:var(--on);padding:26px 32px}
+.t6 h3{font-family:Montserrat,sans-serif;font-weight:800;font-size:14.5px;text-transform:uppercase;letter-spacing:1px;margin:0 0 9px}
+.t6 .prof{text-align:center;margin-bottom:20px}
+.t6 .cols{display:grid;grid-template-columns:1fr 1fr;gap:0 34px}
+.t6 section{margin-bottom:16px}
+.t6 .cols section:last-child{margin-bottom:0}
+.t6 .ent{margin-bottom:10px}
+.t6 .ent .d{font-size:11.5px;opacity:.85}
+.t6 .ent .h{font-weight:700}
+.t6 .ent .s{font-style:italic}
+.t6 .brow{display:flex;justify-content:space-between;font-size:12px}
+.t6 .bar{height:8px;background:#fff;margin:3px 0 8px}
+.t6 .bar i{display:block;height:100%;background:var(--c3)}
+.t6 .ci{display:flex;align-items:center;gap:11px;margin-bottom:8px;word-break:break-word}
+.t6 .ib{width:30px;height:30px;border-radius:50%;background:var(--on);display:flex;align-items:center;justify-content:center;flex:none}
 </style>
 </head>
 <body>
@@ -182,22 +280,21 @@ textarea{resize:vertical;min-height:70px}
 <header class="app">
   <div class="app-in">
     <div class="brand">
-      <button class="logo-box" id="logoBtn" title="Натисніть, щоб завантажити логотип компанії">
-        <img id="logoImg" alt="Логотип" style="display:none">
-        <span class="ph-logo" id="logoPh">ЛОГОТИП</span>
-      </button>
-      <input type="file" id="logoInput" accept="image/*" hidden>
-      <div class="brand-txt">KAN Development<small>Конструктор резюме для студентів</small></div>
+      <svg class="kan-logo" viewBox="0 0 184 266" role="img" aria-label="KAN">
+        <polygon points="92,2 182,133 92,264 2,133" fill="#1236d6"/>
+        <text x="92" y="154" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="58" fill="#ffffff">KAN</text>
+      </svg>
+      <div class="brand-txt">KAN Development<small>Перший проєкт твоєї кар’єри — резюме. Створи його разом з KAN.</small></div>
     </div>
     <div class="app-actions">
-      <button class="btn btn-ghost" id="demoBtn">Заповнити прикладом</button>
-      <button class="btn btn-ghost" id="clearBtn">Очистити</button>
+      <button class="btn btn-hd" id="demoBtn">Заповнити прикладом</button>
+      <button class="btn btn-hd-ghost" id="clearBtn">Очистити</button>
     </div>
   </div>
 </header>
 
 <div class="wrap">
-  <div class="intro"><span class="dot"></span><div>Заповніть поля зліва — резюме оновлюється одразу. Оберіть один із <b>3 варіантів дизайну</b> та завантажте його у <b>PDF</b>. Дані зберігаються лише у вашому браузері.</div></div>
+  <div class="intro"><span class="dot"></span><div>Заповніть поля зліва — резюме оновлюється одразу. Оберіть один із <b>6 варіантів дизайну</b> і колір та завантажте його у <b>PDF</b>. Дані зберігаються лише у вашому браузері.</div></div>
 
   <!-- ============ ФОРМА ============ -->
   <form id="form" autocomplete="off" onsubmit="return false">
@@ -313,24 +410,34 @@ textarea{resize:vertical;min-height:70px}
         <span class="saved" id="saved"></span>
       </div>
       <div class="thumbs" id="thumbs"></div>
+      <div class="colors">
+        <span class="lb">Колір шаблону:</span>
+        <div class="sw" id="swatches"></div>
+        <label class="cpick" id="cpick" title="Обрати свій колір"><input type="color" id="colorInput"></label>
+        <button type="button" class="btn btn-light btn-sm" id="colorReset">Як у шаблоні</button>
+      </div>
       <div class="stage" id="stage"></div>
       <div class="warn" id="warn">Текст не вміщається на одну сторінку в цьому варіанті — скоротіть описи або залиште менше пунктів.</div>
       <div class="dl-row">
         <button class="btn btn-primary" id="dlOne">Завантажити PDF (обраний варіант)</button>
-        <button class="btn btn-light" id="dlAll">Завантажити всі 3 PDF</button>
+        <button class="btn btn-light" id="dlAll">Завантажити всі 6 PDF</button>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-/* ===== Налаштування бренду: можна вставити посилання або data:URI логотипу ===== */
-const BRAND = { logo: '' };
+<footer class="site-ft">Конструктор створено командою <a href="https://kandevelopment.com" target="_blank" rel="noopener">KAN Development</a></footer>
 
-const KEY = 'kan-resume-v1', LOGO_KEY = 'kan-resume-logo';
+<script>
+const KEY = 'kan-resume-v1', COLOR_KEY = 'kan-resume-colors';
 const LEVELS = ['', 'Початковий (A1)', 'Базовий (A2)', 'Середній (B1)', 'Вище середнього (B2)', 'Вільно (C1–C2)'];
 const PTYPES = ['Волонтерський проєкт', 'Курсова робота', 'Дипломна робота', 'Підробіток', 'Інше'];
-const VARIANTS = ['Варіант 1', 'Варіант 2', 'Варіант 3'];
+const VARIANTS = ['Варіант 1', 'Варіант 2', 'Варіант 3', 'Варіант 4', 'Варіант 5', 'Варіант 6'];
+const DEF_COLORS = ['#2453c9', '#0f5c8f', '#0e4a6e', '#3a3a3a', '#8c1d2e', '#5596c6'];
+const PRESETS = ['#0a3d8f','#2453c9','#0f5c8f','#5596c6','#0e4a6e','#0e7c7b','#2e7d32','#8c1d2e','#c2185b','#6a1b9a','#e65100','#3a3a3a'];
+let COLORS = (()=>{ try{ const a = JSON.parse(localStorage.getItem(COLOR_KEY)||'[]'); return Array.isArray(a) ? a.map(c => /^#[0-9a-f]{6}$/i.test(c) ? c.toLowerCase() : null) : []; }catch(e){ return []; } })();
+const colorOf = i => COLORS[i] || DEF_COLORS[i];
+const pal = i => palette(colorOf(i));
 
 const blank = () => ({photo:'',last:'',first:'',middle:'',position:'',phone:'',email:'',city:'',relocate:'',
   uni:'',faculty:'',specialty:'',course:'',studyForm:'',eduYears:'',
@@ -387,15 +494,41 @@ function eduHTML(d, mode){
 }
 function relocLine(d){ return [d.city, d.relocate].filter(has).map(esc).join(' · '); }
 
+/* ===== Кольорова гамма шаблону ===== */
+function hex2rgb(h){ h = h.replace('#',''); const n = parseInt(h,16); return [(n>>16)&255,(n>>8)&255,n&255]; }
+function rgb2hex(a){ return '#'+a.map(v=>Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,'0')).join(''); }
+function mix(h,t,w){ const a = hex2rgb(h), b = hex2rgb(t); return rgb2hex(a.map((v,i)=>v+(b[i]-v)*w)); }
+function lum(h){ return hex2rgb(h).map(v=>{ v/=255; return v<=.03928 ? v/12.92 : Math.pow((v+.055)/1.055,2.4); }).reduce((s,v,i)=>s+v*[.2126,.7152,.0722][i],0); }
+function palette(c){
+  let ct = c; for(let k=0;k<12 && 1.05/(lum(ct)+.05) < 4.5;k++) ct = mix(ct,'#000000',.15);
+  return { c, c2:mix(c,'#000000',.22), c3:mix(c,'#000000',.55), cl:mix(c,'#ffffff',.9), cs:mix(c,'#ffffff',.78), cm:mix(c,'#ffffff',.55), ct,
+           on: 1.05/(lum(c)+.05) >= 3 ? '#ffffff' : '#17202e' };
+}
+const vars = P => `--c:${P.c};--c2:${P.c2};--c3:${P.c3};--cl:${P.cl};--cs:${P.cs};--cm:${P.cm};--ct:${P.ct};--on:${P.on}`;
+
+/* Іконки контактів */
+const ICONS = {
+  phone:'<path d="M4.5 2.5h2.8l1.4 3.6-1.9 1.2a8.5 8.5 0 0 0 4 4l1.2-1.9 3.6 1.4v2.8a1.6 1.6 0 0 1-1.7 1.6A13 13 0 0 1 2.9 4.2 1.6 1.6 0 0 1 4.5 2.5z"/>',
+  mail:'<rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M2.5 5l6.5 5 6.5-5"/>',
+  pin:'<path d="M9 16s5-4.6 5-8.6A5 5 0 0 0 4 7.4C4 11.4 9 16 9 16z"/><circle cx="9" cy="7.4" r="1.8"/>',
+  move:'<path d="M2.5 9h12M10.5 5l4 4-4 4"/>'
+};
+const icon = (n,col,s=14) => `<svg width="${s}" height="${s}" viewBox="0 0 18 18" fill="none" stroke="${col}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS[n]}</svg>`;
+const nl = s => String(s||'').split('\n').map(x=>x.trim()).filter(Boolean);
+const ul = a => `<ul>${a.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
+const desc = s => { const l = nl(s); return l.length>1 ? ul(l) : `<p>${br(s)}</p>`; };
+const eduSub = d => [d.faculty, d.specialty].filter(has).map(esc).join(', ');
+const eduMeta = d => [d.course, has(d.studyForm) ? d.studyForm + ' форма навчання' : ''].filter(has).map(esc).join(' · ');
+
 /* ===== Варіант 1 ===== */
-function t1(d){
+function t1(d,P){
   const n = names(d);
   const skills = lines(d.skills);
   const langs = filled(d.langs);
   const other = [['Хобі',d.hobbies],['Спорт',d.sport],['Улюблена книга',d.book],['Досягнення',d.achievements]].filter(x=>has(x[1]));
   const contacts = [['Телефон',d.phone],['Email',d.email],['Місто',d.city],['Переїзд',d.relocate]].filter(x=>has(x[1]));
   const exp = filled(d.exp), pr = filled(d.projects);
-  return `<div class="page t1">
+  return `<div class="page t1" style="${vars(P)}">
     <div class="top">${photo(d,'ph')}
       <div class="band">${has(d.position)?`<div class="role">${esc(d.position)}</div>`:''}<div class="n1">${esc(n.a)}</div><div class="n2">${esc(n.b)}</div></div>
     </div>
@@ -417,13 +550,13 @@ function t1(d){
 }
 
 /* ===== Варіант 2 ===== */
-function t2(d){
+function t2(d,P){
   const n = names(d);
   const langs = filled(d.langs);
   const hob = [...items(d.hobbies), ...items(d.sport)];
   const exp = filled(d.exp), pr = filled(d.projects), skills = lines(d.skills);
   const dots = lv => `<span class="dots">${[1,2,3,4,5].map(i=>`<i class="${i<=+lv?'':'off'}"></i>`).join('')}</span>`;
-  return `<div class="page t2">
+  return `<div class="page t2" style="${vars(P)}">
     <div class="side fit">
       ${photo(d,'ph')}
       <div class="name">${esc(n.a)}<small>${esc(n.b)}</small></div>
@@ -445,37 +578,137 @@ function t2(d){
 }
 
 /* ===== Варіант 3 ===== */
-function ring(p){
+function ring(p,P){
   const r = 27, c = 2*Math.PI*r;
-  return `<div class="rw"><svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="${r}" fill="none" stroke="#c7d3df" stroke-width="7"/><circle cx="32" cy="32" r="${r}" fill="none" stroke="#0e4a6e" stroke-width="7" stroke-dasharray="${(c*p/100).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 32 32)"/></svg><b>${p}%</b></div>`;
+  return `<div class="rw"><svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="${r}" fill="none" stroke="${P.cm}" stroke-width="7"/><circle cx="32" cy="32" r="${r}" fill="none" stroke="${P.c}" stroke-width="7" stroke-dasharray="${(c*p/100).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 32 32)"/></svg><b>${p}%</b></div>`;
 }
-function t3(d){
+function t3(d,P){
   const n = names(d);
   const langs = filled(d.langs), skills = lines(d.skills), exp = filled(d.exp), pr = filled(d.projects);
   const contacts = [['Тел.',d.phone],['@',d.email],['Місто',d.city],['Переїзд',d.relocate]].filter(x=>has(x[1]));
   const about = [['Хобі',d.hobbies],['Спорт',d.sport],['Улюблена книга',d.book],['Досягнення',d.achievements]].filter(x=>has(x[1]));
   const tl = (yr, body) => `<div class="tl"><div class="yr">${yr}</div><div class="bd">${body}</div></div>`;
-  return `<div class="page t3">
+  return `<div class="page t3" style="${vars(P)}">
     <div class="side fit">
       ${photo(d,'ph')}
       ${sec('Про мене', has(d.about) && `<p>${br(d.about)}</p>`)}
       ${contacts.length?`<section>${contacts.map(c=>`<div class="ci"><span>${c[0]}</span><span>${esc(c[1])}</span></div>`).join('')}</section>`:''}
       ${sec('Навички', skills.length && `<ul>${skills.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`)}
-      ${sec('Мови', langs.length && `<div class="rings">${langs.map(l=>`<div class="ring">${ring((+l.level||1)*20)}${esc(l.name)}</div>`).join('')}</div>`)}
+      ${sec('Мови', langs.length && `<div class="rings">${langs.map(l=>`<div class="ring">${ring((+l.level||1)*20,P)}${esc(l.name)}</div>`).join('')}</div>`)}
     </div>
     <div class="main">
       <div class="banner"><div class="n">${esc(n.a)}<small>${esc(n.b)}</small></div>${has(d.position)?`<div class="r">${esc(d.position)}</div>`:''}</div>
       <div class="mbody fit">
         ${sec('Освіта', eduHTML(d,'t3'))}
         ${sec('Досвід', exp.length && exp.map(x=>tl(esc(x.period).replace(/\s*[–-]\s*/,'<br>–<br>'), `<div class="h">${esc(x.company)}${has(x.company)&&has(x.role)?' | ':''}${esc(x.role)}</div>${has(x.desc)?`<p>${br(x.desc)}</p>`:''}`)).join(''))}
-        ${sec('Проєкти', pr.length && pr.map(x=>tl(esc(x.period), `<div class="h">${esc(x.title)}</div><div style="color:#0e4a6e;font-size:11.5px;font-weight:600">${esc(x.type)}</div>${has(x.desc)?`<p>${br(x.desc)}</p>`:''}`)).join(''))}
+        ${sec('Проєкти', pr.length && pr.map(x=>tl(esc(x.period), `<div class="h">${esc(x.title)}</div><div style="color:${P.ct};font-size:11.5px;font-weight:600">${esc(x.type)}</div>${has(x.desc)?`<p>${br(x.desc)}</p>`:''}`)).join(''))}
         ${sec('Про себе', about.length && `<div class="about">${about.map(a=>`<div><div class="lb">${a[0]}</div>${esc(a[1])}</div>`).join('')}</div>`)}
       </div>
     </div>
   </div>`;
 }
 
-const TPL = [t1, t2, t3];
+/* ===== Варіант 4 ===== */
+function t4(d,P){
+  const n = names(d);
+  const langs = filled(d.langs), skills = lines(d.skills), hob = [...items(d.hobbies), ...items(d.sport)];
+  const exp = filled(d.exp), pr = filled(d.projects);
+  const contacts = [['phone',d.phone],['mail',d.email],['pin',d.city],['move',d.relocate]].filter(x=>has(x[1]));
+  const extra = [['Досягнення',d.achievements],['Улюблена книга',d.book]].filter(x=>has(x[1]));
+  const sq = lv => `<span class="sq">${[1,2,3,4,5].map(i=>`<i class="${i<=+lv?'':'off'}"></i>`).join('')}</span>`;
+  const dt = s => has(s) ? esc(String(s).trim()).replace(/\s*[–-]\s*/,' –<br>') : '';
+  const ent = (date,h,co,body) => `<div class="ent"><div class="dt${date?'':' e'}">${date}</div><div class="bd"><div class="h">${h}</div>${co?`<div class="co">${co}</div>`:''}${body||''}</div></div>`;
+  const sub = eduSub(d), meta = eduMeta(d);
+  const edu = (has(d.uni)||sub||meta) ? ent(dt(d.eduYears), esc(d.uni), sub, meta?`<p>${meta}</p>`:'') : '';
+  return `<div class="page t4" style="${vars(P)}">
+    <div class="frame">${photo(d,'ph')}</div>
+    <div class="top"><div class="n">${esc(n.a)}<small>${esc(n.b)}</small></div>${has(d.position)?`<div class="r">${esc(d.position)}</div>`:''}</div>
+    <div class="body">
+      <div class="side fit">
+        ${sec('Контакти', contacts.length && contacts.map(c=>`<div class="ic">${icon(c[0],P.ct,13)}<span>${esc(c[1])}</span></div>`).join(''))}
+        ${sec('Мови', langs.length && langs.map(l=>`<div class="lrow"><span>${esc(l.name)}</span>${sq(l.level)}</div>`).join(''))}
+        ${sec('Навички', skills.length && `<div class="tags">${skills.map(s=>`<span>${esc(s)}</span>`).join('')}</div>`)}
+        ${sec('Хобі та спорт', hob.length && `<div class="tags fill">${hob.map(s=>`<span>${esc(s)}</span>`).join('')}</div>`)}
+      </div>
+      <div class="main fit">
+        ${sec('Про мене', has(d.about) && `<p>${br(d.about)}</p>`)}
+        ${sec('Досвід роботи', exp.length && exp.map(x=>ent(dt(x.period), esc(x.role)||esc(x.company), has(x.role)&&has(x.company)?esc(x.company):'', has(x.desc)?`<p>${br(x.desc)}</p>`:'')).join(''))}
+        ${sec('Проєкти та активності', pr.length && pr.map(x=>ent(dt(x.period), esc(x.title), esc(x.type), has(x.desc)?`<p>${br(x.desc)}</p>`:'')).join(''))}
+        ${sec('Освіта', edu)}
+        ${sec('Інше', extra.length && extra.map(o=>`<p><b>${o[0]}:</b> ${esc(o[1])}</p>`).join(''))}
+      </div>
+    </div>
+    <div class="bot"></div>
+  </div>`;
+}
+
+/* ===== Варіант 5 ===== */
+function t5(d,P){
+  const n = names(d);
+  const langs = filled(d.langs), skills = lines(d.skills), hob = [...items(d.hobbies), ...items(d.sport)];
+  const exp = filled(d.exp), pr = filled(d.projects);
+  const contacts = [d.phone, d.email, d.city, d.relocate].filter(has);
+  const extra = [['Досягнення',d.achievements],['Улюблена книга',d.book]].filter(x=>has(x[1]));
+  const eduList = [[d.faculty,d.specialty].filter(has).join(', '), d.course, has(d.studyForm)?d.studyForm+' форма навчання':'', has(d.eduYears)?'Роки навчання: '+d.eduYears:''].filter(has);
+  return `<div class="page t5" style="${vars(P)}">
+    <div class="hd" style="background:linear-gradient(186deg, ${P.c} 74%, #ffffff 74.4%)">
+      <div class="acc" style="background:linear-gradient(135deg, ${P.c2} 34%, rgba(255,255,255,0) 34.4%)"></div>
+      <div class="n">${esc(n.a)}<small>${esc(n.b)}</small></div>
+    </div>
+    <div class="body">
+      <div class="side fit">
+        ${photo(d,'ph')}
+        ${sec('Інструменти та навички', skills.length && ul(skills))}
+        ${sec('Мовні навички', langs.length && ul(langs.map(l=>`${l.name} — ${LEVELS[+l.level]||''}`)))}
+        ${sec('Хобі та спорт', hob.length && ul(hob))}
+        ${sec('Додаткові відомості', extra.length && `<ul>${extra.map(o=>`<li><b>${o[0]}:</b> ${esc(o[1])}</li>`).join('')}</ul>`)}
+      </div>
+      <div class="main fit">
+        ${sec('Про мене', has(d.about) && `<p>${br(d.about)}</p>`)}
+        ${sec('Контакти', contacts.length && ul(contacts))}
+        ${sec('Освіта', (has(d.uni)||eduList.length) && `${has(d.uni)?`<div class="h">${esc(d.uni)}</div>`:''}${eduList.length?ul(eduList):''}`)}
+        ${sec('Досвід роботи / практика', exp.length && exp.map(x=>`<div class="ent"><div class="h">${[x.company,x.role].filter(has).map(esc).join(' — ')}</div>${has(x.period)?`<div class="m">${esc(x.period)}</div>`:''}${has(x.desc)?desc(x.desc):''}</div>`).join(''))}
+        ${sec('Проєкти або активності', pr.length && pr.map(x=>`<div class="ent"><div class="h">${esc(x.title)}</div><div class="m">${esc(x.type)}${has(x.period)?' · '+esc(x.period):''}</div>${has(x.desc)?desc(x.desc):''}</div>`).join(''))}
+      </div>
+    </div>
+    <div class="ft" style="background:linear-gradient(174deg, #ffffff 42%, ${P.c} 42.4%)">${has(d.uni)?`<span>${esc(d.uni)}</span>`:''}</div>
+  </div>`;
+}
+
+/* ===== Варіант 6 ===== */
+function t6(d,P){
+  const n = names(d);
+  const langs = filled(d.langs), skills = lines(d.skills), exp = filled(d.exp), pr = filled(d.projects);
+  const contacts = [['phone',d.phone],['mail',d.email],['pin',d.city],['move',d.relocate]].filter(x=>has(x[1]));
+  const other = [['Хобі',d.hobbies],['Спорт',d.sport],['Улюблена книга',d.book],['Досягнення',d.achievements]].filter(x=>has(x[1]));
+  const sub = eduSub(d), meta = eduMeta(d);
+  const ent = (dt,h,s,body) => `<div class="ent">${dt?`<div class="d">${dt}</div>`:''}<div class="h">${h}</div>${s?`<div class="s">${s}</div>`:''}${body||''}</div>`;
+  const icCol = P.on === '#ffffff' ? P.ct : P.cl;
+  return `<div class="page t6" style="${vars(P)}">
+    <div class="top">
+      <div class="band"><div class="n">${esc(n.a)}<small>${esc(n.b)}</small></div>${has(d.position)?`<div class="role">${esc(d.position)}</div>`:''}</div>
+      ${photo(d,'ph')}
+    </div>
+    <div class="panel fit">
+      ${has(d.about)?`<div class="prof"><h3>Профіль</h3><p>${br(d.about)}</p></div>`:''}
+      <div class="cols">
+        <div>
+          ${sec('Освіта', (has(d.uni)||sub||meta) && ent(esc(d.eduYears), esc(d.uni), [sub,meta].filter(Boolean).join('<br>')))}
+          ${sec('Досвід', exp.length && exp.map(x=>ent(esc(x.period), esc(x.company)||esc(x.role), has(x.company)&&has(x.role)?esc(x.role):'', has(x.desc)?`<p>${br(x.desc)}</p>`:'')).join(''))}
+          ${sec('Проєкти', pr.length && pr.map(x=>ent([esc(x.type),esc(x.period)].filter(Boolean).join(' · '), esc(x.title), '', has(x.desc)?`<p>${br(x.desc)}</p>`:'')).join(''))}
+        </div>
+        <div>
+          ${sec('Навички', skills.length && ul(skills))}
+          ${sec('Мови', langs.length && langs.map(l=>{ const p=(+l.level||1)*20; return `<div class="brow"><span>${esc(l.name)}</span><span>${p}%</span></div><div class="bar"><i style="width:${p}%"></i></div>`; }).join(''))}
+          ${sec('Контакти', contacts.length && contacts.map(c=>`<div class="ci"><span class="ib">${icon(c[0],icCol,15)}</span><span>${esc(c[1])}</span></div>`).join(''))}
+          ${sec('Про себе', other.length && other.map(o=>`<p><b>${o[0]}:</b> ${esc(o[1])}</p>`).join(''))}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+const TPL = [t1, t2, t3, t4, t5, t6];
 
 /* ===== Повторювані блоки форми ===== */
 function repExp(x,i){ return `<div class="rep"><button type="button" class="del" data-del="exp" data-i="${i}">✕ Видалити</button><div class="tag">Досвід ${i+1}</div>
@@ -513,10 +746,27 @@ function buildThumbs(){
 let raf;
 function update(){ cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); }
 function draw(){
-  stage.innerHTML = TPL[cur](S);
-  thumbs.querySelectorAll('.thumb').forEach((t,i)=>{ t.classList.toggle('on', i===cur); t.querySelector('.tstage').innerHTML = TPL[i](S); });
-  fit(); checkOverflow(); save();
+  stage.innerHTML = TPL[cur](S, pal(cur));
+  thumbs.querySelectorAll('.thumb').forEach((t,i)=>{ t.classList.toggle('on', i===cur); t.querySelector('.tstage').innerHTML = TPL[i](S, pal(i)); });
+  renderSwatches(); fit(); checkOverflow(); save();
 }
+
+/* ===== Колір шаблону ===== */
+const swatches = document.getElementById('swatches'), colorInput = document.getElementById('colorInput');
+function renderSwatches(){
+  const c = colorOf(cur);
+  swatches.innerHTML = PRESETS.map(p=>`<button type="button" data-c="${p}" style="background:${p}" class="${p===c?'on':''}" title="${p}"></button>`).join('');
+  colorInput.value = c;
+  document.getElementById('cpick').classList.toggle('on', !PRESETS.includes(c));
+}
+function setColor(c){
+  COLORS[cur] = c;
+  try{ localStorage.setItem(COLOR_KEY, JSON.stringify(COLORS)); }catch(e){}
+  update();
+}
+swatches.addEventListener('click', e=>{ const b = e.target.closest('[data-c]'); if(b) setColor(b.dataset.c); });
+colorInput.addEventListener('input', e=> setColor(e.target.value.toLowerCase()));
+document.getElementById('colorReset').addEventListener('click', ()=> setColor(null));
 function fit(){
   const w = stage.clientWidth, k = w/794;
   stage.style.height = (1122*k) + 'px';
@@ -568,22 +818,30 @@ document.getElementById('photoInput').addEventListener('change', e=>{
 });
 document.getElementById('photoDel').addEventListener('click', ()=>{ S.photo=''; showPhoto(); update(); });
 
-/* Логотип компанії */
-function showLogo(src){
-  const img = document.getElementById('logoImg'), ph = document.getElementById('logoPh');
-  if(src){ img.src = src; img.style.display='block'; ph.style.display='none'; }
-  else { img.style.display='none'; ph.style.display='block'; }
+/* Фото-заглушка для прикладу: малюємо силует, щоб заповнити і поле фото */
+function demoPhoto(){
+  const c = document.createElement('canvas'); c.width = c.height = 400;
+  const x = c.getContext('2d');
+  const g = x.createLinearGradient(0,0,0,400); g.addColorStop(0,'#dfe8f6'); g.addColorStop(1,'#b9cbe8');
+  x.fillStyle = g; x.fillRect(0,0,400,400);
+  x.fillStyle = '#5b78a8';
+  x.beginPath(); x.arc(200,160,78,0,Math.PI*2); x.fill();
+  x.beginPath(); x.ellipse(200,420,150,170,0,Math.PI,0); x.fill();
+  return c.toDataURL('image/png');
 }
-let savedLogo = ''; try{ savedLogo = localStorage.getItem(LOGO_KEY) || ''; }catch(e){}
-showLogo(savedLogo || BRAND.logo);
-document.getElementById('logoBtn').addEventListener('click', ()=>document.getElementById('logoInput').click());
-document.getElementById('logoInput').addEventListener('change', e=>{
-  const f = e.target.files[0]; if(!f) return;
-  readImage(f, 400, url => { showLogo(url); try{ localStorage.setItem(LOGO_KEY, url); }catch(err){} });
+/* «Заповнити прикладом» — заповнює всі поля, включно з фото */
+document.getElementById('demoBtn').addEventListener('click', ()=>{
+  S = Object.assign(blank(), JSON.parse(JSON.stringify(DEMO)));
+  S.photo = demoPhoto();
+  fillForm(); update();
 });
-
-document.getElementById('demoBtn').addEventListener('click', ()=>{ const ph = S.photo; S = Object.assign(blank(), JSON.parse(JSON.stringify(DEMO))); S.photo = ph; fillForm(); update(); });
-document.getElementById('clearBtn').addEventListener('click', ()=>{ if(confirm('Очистити всі поля?')){ S = blank(); fillForm(); update(); } });
+/* «Очистити» — видаляє всі дані з полів, включно з фото */
+document.getElementById('clearBtn').addEventListener('click', ()=>{
+  S = blank();
+  document.getElementById('photoInput').value = '';
+  fillForm(); update();
+  try{ localStorage.removeItem(KEY); }catch(e){}
+});
 
 /* ===== PDF ===== */
 function fileName(i){
@@ -592,7 +850,7 @@ function fileName(i){
 }
 async function exportPdf(i){
   if(document.fonts && document.fonts.ready) await document.fonts.ready;
-  const tmp = document.createElement('div'); tmp.innerHTML = TPL[i](S);
+  const tmp = document.createElement('div'); tmp.innerHTML = TPL[i](S, pal(i));
   const el = tmp.firstElementChild;
   return html2pdf().set({
     margin:0, filename:fileName(i),
@@ -608,7 +866,7 @@ async function withBusy(btn, label, fn){
   btn.disabled = false; btn.textContent = old;
 }
 document.getElementById('dlOne').addEventListener('click', e=> withBusy(e.target, 'Створюю PDF…', ()=>exportPdf(cur)));
-document.getElementById('dlAll').addEventListener('click', e=> withBusy(e.target, 'Створюю 3 PDF…', async ()=>{ for(let i=0;i<3;i++) await exportPdf(i); }));
+document.getElementById('dlAll').addEventListener('click', e=> withBusy(e.target, 'Створюю 6 PDF…', async ()=>{ for(let i=0;i<TPL.length;i++) await exportPdf(i); }));
 
 /* старт */
 buildThumbs(); fillForm(); draw();
