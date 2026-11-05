@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Канали для студентів</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap">
+<style>
+html,body{margin:0}
+[hidden]{display:none!important}
+/* Layout: the KAN Development site. Grey gradient header with the diamond logo and brand text, pale-blue ground, white cards with thin blue-grey outlines and 14px radius, Montserrat headings with numbered circles, Open Sans body. Light only, like the source site. */
+:root {
+  --kan: #0a3d8f;
+  --kan2: #1e6fd9;
+  --kan-d: #072c68;
+  --kan-l: #eaf2fd;
+  --brand: #1236d6;
+  --brand-d: #0b27a8;
+  --navy: #0b1f5e;
+  --navy2: #13286e;
+  --line: #d4e1f4;
+  --ink: #14223b;
+  --mut: #5d6c86;
+  --bg: #f3f7fd;
+  --white: #ffffff;
+  --head1: #dbe1ea;
+  --head2: #cfd6e2;
+  --head-line: #c3cbd9;
+  --display: Montserrat, "Segoe UI", Arial, sans-serif;
+  --body: "Open Sans", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.45; }
+
+/* ---------- Header ---------- */
+header.app { background: linear-gradient(180deg, var(--head1), var(--head2)); color: var(--navy); border-bottom: 1px solid var(--head-line); }
+.app-in {
+  max-width: 1200px; margin: 0 auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+  padding-block: 14px;
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 18px; min-width: 0; }
+.kan-logo { width: 70px; height: auto; flex: none; display: block; }
+.brand-txt { min-width: 0; font-family: var(--display); font-weight: 800; font-size: 30px; letter-spacing: .2px; line-height: 1.15; color: var(--navy); }
+.brand-txt small { display: block; font-family: var(--body); font-weight: 400; font-size: 15.5px; color: var(--navy2); letter-spacing: 0; margin-top: 6px; }
+.app-actions { margin-left: auto; display: flex; gap: 14px; flex-wrap: wrap; }
+.btn { display: inline-block; border: 1px solid transparent; border-radius: 10px; padding: 9px 16px; font-weight: 600; font-size: 14px; text-decoration: none; cursor: pointer; transition: .15s; }
+.btn-hd { background: var(--brand); color: var(--white); font-weight: 700; font-size: 15.5px; padding: 12px 24px; }
+.btn-hd:hover { background: var(--brand-d); }
+.btn:focus-visible { outline: 3px solid var(--kan2); outline-offset: 3px; }
+
+/* ---------- Content ---------- */
+.wrap {
+  max-width: 1200px; margin: 0 auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+  padding-block: 26px 60px;
+  display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  gap: 24px; align-items: start;
+}
+.col { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+
+.hero { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 14px; }
+h1 {
+  margin: 0; font-family: var(--display); font-weight: 800;
+  font-size: clamp(26px, 4vw, 40px); line-height: 1.12; color: var(--navy);
+  text-wrap: balance;
+}
+h1 .acc { color: var(--brand); }
+.intro { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; color: var(--mut); font-size: 14px; display: flex; gap: 12px; align-items: center; }
+.intro b { color: var(--kan); }
+.intro .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--kan2); flex: none; }
+
+.card { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; min-width: 0; }
+.card h2 { margin: 0 0 4px; font-family: var(--display); font-size: 17px; font-weight: 700; color: var(--kan); display: flex; align-items: center; gap: 10px; }
+.card h2 .hic { width: 30px; height: 30px; border-radius: 50%; background: var(--kan); display: inline-grid; place-items: center; flex: none; }
+.card h2 .hic svg { width: 17px; height: 17px; fill: var(--white); }
+.card .hint { margin: 0 0 14px 40px; color: var(--mut); font-size: 13px; }
+
+.rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.row {
+  display: grid; grid-template-columns: 26px 40px minmax(0, 1fr) minmax(0, .85fr) 14px;
+  align-items: center; gap: 12px;
+  border: 1px solid var(--line); border-radius: 12px; background: #fafcff;
+  padding: 9px 12px 9px 10px; color: inherit; text-decoration: none; transition: .15s;
+}
+.row:hover { border-color: var(--kan2); background: var(--white); box-shadow: 0 0 0 3px rgba(30, 111, 217, .12); }
+.row:focus-visible { outline: none; border-color: var(--kan2); box-shadow: 0 0 0 3px rgba(30, 111, 217, .3); }
+.num { width: 26px; height: 26px; border-radius: 50%; background: var(--kan); color: var(--white); font-family: var(--display); font-weight: 700; font-size: 12.5px; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+.ic { width: 40px; height: 40px; border-radius: 10px; background: var(--kan-l); border: 1px solid var(--line); display: grid; place-items: center; }
+.ic svg { width: 21px; height: 21px; fill: var(--brand); }
+.who { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.name { font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--ink); line-height: 1.2; overflow-wrap: anywhere; }
+.handle { font-size: 13px; font-weight: 600; color: var(--kan2); overflow-wrap: anywhere; }
+.desc { min-width: 0; border-left: 1px solid var(--line); padding-left: 12px; font-size: 13px; color: var(--mut); line-height: 1.3; }
+.arr { color: var(--kan2); font-weight: 700; transition: transform .15s; }
+.row:hover .arr { transform: translateX(3px); }
+
+/* ---------- Footer ---------- */
+.site-ft { background: var(--head1); border-top: 1px solid var(--head-line); color: var(--navy2); text-align: center; padding-block: 20px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); font-size: 14px; }
+.site-ft a { color: var(--brand); font-weight: 700; text-decoration: none; }
+.site-ft a:hover { text-decoration: underline; }
+
+@media (max-width: 1000px) { .wrap { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  .app-in, .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .kan-logo { width: 48px; }
+  .brand-txt { font-size: 22px; }
+  .brand-txt small { font-size: 13px; }
+  .app-actions { margin-left: 0; width: 100%; }
+  .app-actions .btn { flex: 1; text-align: center; }
+  .card { padding: 16px 12px; }
+  .card .hint { margin-left: 0; }
+  .row { grid-template-columns: 26px 36px minmax(0, 1fr); gap: 10px; }
+  .ic { width: 36px; height: 36px; }
+  .desc { grid-column: 3; border-left: 0; padding-left: 0; }
+  .arr { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .row, .arr, .btn { transition: none; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8-7-3.8z"/></symbol>
+  <symbol id="i-case" viewBox="0 0 24 24"><path d="M9 4h6a2 2 0 0 1 2 2v1h3a2 2 0 0 1 2 2v4H2V9a2 2 0 0 1 2-2h3V6a2 2 0 0 1 2-2zm0 3h6V6H9v1zM2 15h8v1h4v-1h8v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3 6.6 7.2.7-5.4 4.8 1.6 7.1L12 17.5 5.6 21.2l1.6-7.1L1.8 9.3 9 8.6 12 2z"/></symbol>
+  <symbol id="i-bank" viewBox="0 0 24 24"><path d="M12 2 2 7v2h20V7L12 2zM4 11v7h3v-7H4zm6.5 0v7h3v-7h-3zM17 11v7h3v-7h-3zM2 20v2h20v-2H2z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 21V3h2v16h16v2H3zm4-4v-5h3v5H7zm5 0V9h3v8h-3zm5 0V5h3v12h-3z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-2.9a15.6 15.6 0 0 0-1.4-3.6A8 8 0 0 1 18.9 8zM12 4c.8 1.2 1.5 2.5 1.9 4h-3.8c.4-1.5 1.1-2.8 1.9-4zM4.3 14a8.2 8.2 0 0 1 0-4h3.4a16.5 16.5 0 0 0 0 4H4.3zm.8 2h2.9c.3 1.3.8 2.5 1.4 3.6A8 8 0 0 1 5.1 16zM8 8H5.1a8 8 0 0 1 4.3-3.6C8.8 5.5 8.4 6.700 8 8zm4 12c-.8-1.2-1.5-2.5-1.9-4h3.8c-.4 1.5-1.1 2.8-1.9 4zm2.3-6H9.7a14.7 14.7 0 0 1 0-4h4.6a14.7 14.7 0 0 1 0 4zm.3 5.6c.6-1.1 1.1-2.3 1.4-3.6h2.9a8 8 0 0 1-4.3 3.6zm1.7-5.6a16.5 16.5 0 0 0 0-4h3.4a8.2 8.2 0 0 1 0 4h-3.4z"/></symbol>
+  <symbol id="i-sprout" viewBox="0 0 24 24"><path d="M11 22v-7.1C6 14.4 3 11 3 6V4h2c4 0 6.6 1.9 7.5 5.1C13.7 6.6 16.1 5 20 5h1v2c0 4.6-2.8 7.6-8 8v7h-2z"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm1 3v4h10V5H7zm0 7v2h2v-2H7zm4 0v2h2v-2h-2zm4 0v6h2v-6h-2zm-8 4v2h2v-2H7zm4 0v2h2v-2h-2z"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="M8.7 16.6 4.1 12l4.6-4.6L7.3 6l-6 6 6 6 1.4-1.4zm6.6 0 4.6-4.6-4.6-4.6L16.7 6l6 6-6 6-1.4-1.4zM13.1 3l1.9.5-4.1 17.5L9 20.5 13.1 3z"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><path d="M4 4h16a1 1 0 0 1 1 1v10H3V5a1 1 0 0 1 1-1zm1 2v7h14V6H5zM1 17h22v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1z"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><path d="M3 3h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-7v2h3v2H7v-2h3v-2H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v9h16V5H4z"/></symbol>
+  <symbol id="i-mega" viewBox="0 0 24 24"><path d="M20 3v16l-6-3.4H9.6l1.2 5.4H7.8L6.5 15.6H5a3 3 0 0 1-3-3V9.4a3 3 0 0 1 3-3h9L20 3zm2 6v4h-1V9h1z"/></symbol>
+  <symbol id="i-team" viewBox="0 0 24 24"><path d="M8 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 13c-3.3 0-6 1.7-6 4v2h12v-2c0-2.3-2.7-4-6-4zm8 0c-.7 0-1.3.1-1.9.2 1.2.9 1.900 2.2 1.900 3.8v2h6v-2c0-2.2-2.7-4-6-4z"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6 2 11c0 4.4 3.6 8 8 8h1.5c.8 0 1.5.7 1.5 1.5 0 .8.6 1.5 1.5 1.5C18.7 22 22 17 22 12c0-5.5-4.5-10-10-10zM6.5 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></symbol>
+  <symbol id="i-trident" viewBox="0 0 24 24"><path d="M11 2h2v3l1-1v8.5c1.2-.4 2-1.5 2-2.8V4l2-1v6.7c0 2.9-2 5.2-5 5.7V17h3v2h-3v3h-2v-3H8v-2h3v-1.6c-3-.5-5-2.8-5-5.7V3l2 1v5.7c0 1.3.8 2.4 2 2.8V4l1 1V2z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3 6v2h2V9H7zm4 0v2h2V9h-2zm4 0v2h2V9h-2z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></symbol>
+</svg>
+
+<header class="app">
+  <div class="app-in">
+    <div class="brand">
+      <svg class="kan-logo" viewBox="0 0 184 266" role="img" aria-label="KAN">
+        <polygon points="92,2 182,133 92,264 2,133" fill="#1236d6"/>
+        <text x="92" y="154" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="58" fill="#ffffff">KAN</text>
+      </svg>
+      <div class="brand-txt">KAN Development<small>Переходь і знаходь корисні пропозиції для старту кар’єри.</small></div>
+    </div>
+    <div class="app-actions">
+      <a class="btn btn-hd" href="https://hraiassistant2027-rgb.github.io/Resume/" target="_blank" rel="noopener">Конструктор резюме</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1><span class="acc">13 Telegram-каналів</span> для пошуку роботи</h1>
+    <div class="intro"><span class="dot"></span><div>Студентам, початківцям і молодим фахівцям. Натисніть на канал, і він відкриється в <b>Telegram</b>. Перед відгуком на вакансію складіть резюме в <b>Конструкторі резюме</b>.</div></div>
+  </div>
+  <div class="col" id="col-left"></div>
+  <div class="col" id="col-right"></div>
+</main>
+
+<footer class="site-ft">Добірку підготувала команда <a href="https://kandevelopment.com" target="_blank" rel="noopener">KAN Development</a></footer>
+
+<script>
+const sections = [
+  { col: "col-left", title: "Студентський старт", hint: "Стажування, вакансії та кар’єрні центри університетів.", icon: "i-cap", items: [
+    ["STUD-POINT", "STUDPOINT", "i-case", "Вакансії та стажування"],
+    ["InternsGo!", "internsgo", "i-case", "Стажування та junior"],
+    ["UNI WORK", "univwork", "i-user", "Студентам і випускникам"],
+    ["UGEN", "ugen_ua", "i-star", "Старт кар’єри"],
+    ["ЦПРК КПІ", "kpicareer", "i-bank", "Вакансії та стажування"],
+    ["Перспектива КНЕУ", "perspektivaKNEU", "i-chart", "Студентські можливості"],
+    ["Центр кар’єри ННІМВ", "Career_centerIIR", "i-globe", "Вакансії та стажування"],
+    ["СТУДможливості", "studentopp", "i-sprout", "Вакансії та розвиток"]
+  ]},
+  { col: "col-right", title: "Перша робота в IT", hint: "Junior- і trainee-позиції без досвіду.", icon: "i-code", items: [
+    ["Junior DOU", "junior_dou_ua", "i-code", "Перша робота в IT"],
+    ["Don't Panic Junior IT Jobs", "Job_IT_Junior", "i-laptop", "Junior-вакансії в IT"]
+  ]},
+  { col: "col-right", title: "Загальні та галузеві", hint: "Вакансії різних сфер: від digital до креативу.", icon: "i-case", items: [
+    ["Happy Monday", "happymonday", "i-mega", "Digital і кар’єра"],
+    ["Крезюме", "cresume", "i-palette", "Креативні індустрії"],
+    ["JOB for Ukrainians", "jobforukrainians", "i-trident", "Вакансії різних напрямів"]
+  ]}
+];
+const esc = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+let n = 0;
+for (const sec of sections) {
+  const rows = sec.items.map(([name, handle, icon, desc]) => {
+    n++;
+    return `<li><a class="row" href="https://t.me/${handle}" target="_blank" rel="noopener">
+      <span class="num">${n}</span>
+      <span class="ic"><svg aria-hidden="true"><use href="#${icon}"/></svg></span>
+      <span class="who"><span class="name">${esc(name)}</span><span class="handle">@${esc(handle)}</span></span>
+      <span class="desc">${esc(desc)}</span>
+      <span class="arr" aria-hidden="true">→</span></a></li>`;
+  }).join("");
+  const card = document.createElement("section");
+  card.className = "card";
+  card.innerHTML = `<h2><span class="hic"><svg aria-hidden="true"><use href="#${sec.icon}"/></svg></span>${esc(sec.title)}</h2>
+    <p class="hint">${esc(sec.hint)}</p><ul class="rows">${rows}</ul>`;
+  document.getElementById(sec.col).appendChild(card);
+}
+</script>
+</body>
+</html>
